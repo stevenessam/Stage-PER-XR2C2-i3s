@@ -235,7 +235,6 @@
             // Add event listener to dropdown items
             immersionDropdown.addEventListener('click', function (event) {
                 selectedFilters.immersionType = event.target.textContent;
-                document.getElementById('dropdownMenuButton').textContent = selectedFilters.immersionType;
                 applyFilters();
             });
         }
@@ -261,7 +260,6 @@
             // Add event listener to dropdown items
             immersionDegreeDropdown.addEventListener('click', function (event) {
                 selectedFilters.immersionDegree = event.target.textContent;
-                document.getElementById('immersionDegreeDropdownButton').textContent = selectedFilters.immersionDegree;
                 applyFilters();
             });
         }
@@ -296,7 +294,6 @@
             // Add event listener to dropdown items
             displayDeviceTypeDropdown.addEventListener('click', function (event) {
                 selectedFilters.displayDeviceType = event.target.textContent;
-                document.getElementById('displayDeviceTypeDropdownButton').textContent = selectedFilters.displayDeviceType;
                 applyFilters();
             });
         }
@@ -324,7 +321,6 @@
             // Add event listener to dropdown items
             progressStateDropdown.addEventListener('click', function (event) {
                 selectedFilters.progressState = event.target.textContent;
-                document.getElementById('progressStateDropdownButton').textContent = selectedFilters.progressState;
                 applyFilters();
             });
         }

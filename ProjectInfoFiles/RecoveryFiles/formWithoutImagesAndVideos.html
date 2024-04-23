@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+    <link rel="stylesheet" href="formCss.css">
+
+    <script>
+        // Function to create form elements dynamically
+        function createForm(json) {
+            const form = document.createElement('form');
+            const formData = {};
+
+            // Function to extract data from list-type attributes
+            function extractListData(labelId) {
+                const divContainers = document.querySelectorAll(`div[data-label="${labelId}"]`);
+                const listData = [];
+
+                divContainers.forEach(container => {
+                    const inputs = container.querySelectorAll('input');
+                    const object = {};
+
+                    inputs.forEach(input => {
+                        object[input.getAttribute('placeholder')] = input.value.trim();
+                    });
+
+                    // Check if the object is not empty before pushing it to the listData array
+                    if (Object.keys(object).length !== 0) {
+                        listData.push(object);
+                    }
+                });
+
+                return listData;
+            }
+
+            json.forEach(category => {
+                Object.entries(category).forEach(([catName, attributes]) => {
+                    formData[catName] = {};
+                    const fieldset = document.createElement('fieldset');
+                    const legend = document.createElement('legend');
+                    legend.textContent = catName;
+                    fieldset.appendChild(legend);
+
+                    attributes.forEach(attr => {
+                        formData[catName][attr.label] = '';
+                        const label = document.createElement('label');
+                        label.setAttribute('id', attr.label);
+                        label.textContent = attr.label;
+                        fieldset.appendChild(label);
+
+                        if (attr.type.toLowerCase() === 'list') {
+                            const addButton = document.createElement('button');
+                            addButton.textContent = 'Add ' + attr.label;
+                            addButton.type = 'button';
+                            addButton.onclick = () => {
+                                const listItem = document.createElement('div');
+                                listItem.setAttribute('data-label', attr.label);
+                                attr.children[0].forEach(child => {
+                                    const childInput = document.createElement('input');
+                                    childInput.setAttribute('placeholder', child.label);
+                                    childInput.setAttribute('type', child.type.toLowerCase());
+                                    listItem.appendChild(childInput);
+                                });
+                                fieldset.insertBefore(listItem, addButton);
+                            };
+                            fieldset.appendChild(addButton);
+                        } else if (attr.type.toLowerCase() === 'boolean') {
+                            const radioTrue = document.createElement('input');
+                            radioTrue.setAttribute('type', 'radio');
+                            radioTrue.setAttribute('name', catName + '_' + attr.label);
+                            radioTrue.setAttribute('value', 'true');
+                            const labelTrue = document.createElement('label');
+                            labelTrue.textContent = 'True';
+                            labelTrue.appendChild(radioTrue);
+                            fieldset.appendChild(labelTrue);
+
+                            const radioFalse = document.createElement('input');
+                            radioFalse.setAttribute('type', 'radio');
+                            radioFalse.setAttribute('name', catName + '_' + attr.label);
+                            radioFalse.setAttribute('value', 'false');
+                            const labelFalse = document.createElement('label');
+                            labelFalse.textContent = 'False';
+                            labelFalse.appendChild(radioFalse);
+                            fieldset.appendChild(labelFalse);
+                        } else {
+                            const input = document.createElement('input');
+                            input.setAttribute('name', catName + '_' + attr.label);
+                            input.setAttribute('type', attr.type.toLowerCase());
+                            fieldset.appendChild(input);
+                        }
+                    });
+                    form.appendChild(fieldset);
+                });
+            });
+
+            const submitButton = document.createElement('button');
+            submitButton.textContent = 'Submit';
+            submitButton.type = 'submit';
+            form.appendChild(submitButton);
+
+            form.onsubmit = (event) => {
+                event.preventDefault();
+                const formDataOutput = {};
+                Object.entries(formData).forEach(([category, attributes]) => {
+                    formDataOutput[category] = {};
+                    Object.entries(attributes).forEach(([label, value]) => {
+                        const input = document.querySelector(`input[name="${category}_${label}"]`);
+                        if (input) {
+                            // Convert boolean values from strings to actual boolean values
+                            if (input.type === 'checkbox' || input.type === 'radio') {
+                                formDataOutput[category][label] = Boolean(input.checked);
+                            } else {
+                                formDataOutput[category][label] = input.value;
+                            }
+                        } else {
+                            const listData = extractListData(label);
+                            formDataOutput[category][label] = listData;
+                        }
+                    });
+                });
+                console.log(formDataOutput);
+            };
+
+
+            document.body.appendChild(form);
+        }
+
+        // Fetch JSON data from file
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => createForm(data))
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

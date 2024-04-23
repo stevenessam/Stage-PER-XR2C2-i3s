@@ -1,0 +1,17 @@
+{
+  "name": "xr2c2_vitrine",
+  "version": "1.0.0",
+  "description": "- Initialisez Node.js en exécutant la commande suivante :\r     ``` \r     npm init -y\r     ```\r - Installez le package http-server:\r     ``` \r     npm install -g http-server\r     ```\r - Une fois installé, démarrez le serveur local en exécutant :\r     ```\r     http-server \r     ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  }
+}

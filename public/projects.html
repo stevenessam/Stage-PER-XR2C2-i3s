@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <!-- Bootstrap CDN links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+        }
+
+        .card-title {
+            min-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 mb-4">
+                    <input type="text" class="form-control" id="searchInput"
+                        placeholder="Search by project name or description">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="progressStateDropdownButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Progress State
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="progressStateDropdownButton"
+                            id="progress-state-dropdown">
+                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Progress States</a>
+                            </li>
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Immersion Type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="immersion-dropdown">
+                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Immersion Type</a></li>
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="immersionDegreeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Immersivity Degree
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="immersionDegreeDropdownButton"
+                            id="immersion-degree-dropdown">
+                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Immersivity Degrees</a>
+                            </li>
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="displayDeviceTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Display Device Type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="displayDeviceTypeDropdownButton"
+                            id="display-device-type-dropdown">
+                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Display Device
+                                    Types</a></li>
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="projects-container">
+                <!-- Project cards will be dynamically populated here -->
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-5" id="pagination">
+                    <!-- Pagination links will be dynamically populated here -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Variables to keep track of current page and projects per page
+        let currentPage = 1;
+        const projectsPerPage = 9;
+        let projectsData; // Variable to store all projects data
+        let selectedFilters = {
+            immersionType: 'All Immersion Type',
+            immersionDegree: 'All Immersivity Degrees',
+            progressState: 'All Progress States',
+            displayDeviceType: 'All Display Device Types'
+        };
+
+        // Fetch projects data from server
+        fetch('http://localhost:3000/projects')
+            .then(response => response.json())
+            .then(data => {
+                projectsData = data; // Store projects data
+                displayProjects(data, currentPage);
+                populateDropdown(data);
+                populateImmersivityDegreeDropdown(data);
+                populateProgressStateDropdown(data);
+                populateDisplayDeviceTypeDropdown(data);
+                setupPagination(projectsData);
+                applyFilters();
+            })
+            .catch(error => console.error('Error fetching projects:', error));
+
+
+        // Function to redirect to project information page
+        function redirectToProjectInformation(projectId) {
+            // Redirect logic here
+            window.location.href = `projectinformation.html?id=${projectId}`;
+        }
+
+        // Function to display projects based on the search input
+        function filterProjectsByName(searchTerm) {
+            const filteredProjects = projectsData.filter(project => {
+                const projectName = project["Non Technical Description"]["NonTechnicalDescription_NameID"].toLowerCase();
+                const projectGoal = project["Non Technical Description"]["NonTechnicalDescription_GoalID"].toLowerCase();
+                return projectName.includes(searchTerm.toLowerCase()) || projectGoal.includes(searchTerm.toLowerCase());
+            });
+            displayProjects(filteredProjects, currentPage);
+            setupPagination(filteredProjects);
+        }
+
+        // Attach event listener to search input
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.trim();
+            if (searchTerm !== '') {
+                filterProjectsByName(searchTerm);
+            } else {
+                displayProjects(projectsData, currentPage); // Display all projects if search input is empty
+                setupPagination(projectsData);
+                applyFilters();
+            }
+        });
+
+        function displayProjects(projectsData, page) {
+            const startIndex = (page - 1) * projectsPerPage;
+            const endIndex = startIndex + projectsPerPage;
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = ''; // Clear previous content
+
+            const currentProjects = projectsData.slice(startIndex, endIndex);
+            currentProjects.forEach(project => {
+                const projectId = project.id;
+                let projectName = 'Project Name Not Available';
+                let projectGoal = 'Goal Not Available';
+                let imageUrl = '/mediaFiles/Images/placeholder.jpg'; // Default placeholder image
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_NameID"]) {
+                    projectName = project["Non Technical Description"]["NonTechnicalDescription_NameID"];
+                }
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_GoalID"]) {
+                    projectGoal = project["Non Technical Description"]["NonTechnicalDescription_GoalID"];
+                    // Truncate goal text if it exceeds a certain length
+                    const maxLength = 150;
+                    if (projectGoal.length > maxLength) {
+                        projectGoal = projectGoal.substring(0, maxLength) + '...';
+                    }
+                }
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"]) {
+                    const imageFiles = project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"];
+                    if (imageFiles.length > 0 && imageFiles[0]["ImageFilesID_ImagePathID"].length > 0) {
+                        imageUrl = imageFiles[0]["ImageFilesID_ImagePathID"][0];
+                    }
+                }
+                // Create card element
+                const card = document.createElement('div');
+                card.classList.add('col', 'd-flex');
+                card.innerHTML = `
+            <div class="card shadow-sm w-100">
+                <img src="${imageUrl}" class="card-img-top" alt="Project Image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${projectName}</h5>
+                    <p class="card-text">${projectGoal}</p>
+                    <div class="mt-auto">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    onclick="redirectToProjectInformation(${projectId})">View</button></div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+                projectsContainer.appendChild(card);
+            });
+        }
+
+
+        // Function to populate the dropdown menu
+        function populateDropdown(projectsData) {
+            const immersionDropdown = document.getElementById('immersion-dropdown');
+            const immersionTypes = new Set();
+
+            // Extract unique immersion types from projects data
+            projectsData.forEach(project => {
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"]) {
+                    immersionTypes.add(project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"]);
+                }
+            });
+
+            // Create dropdown items
+            immersionTypes.forEach(type => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${type}</a>`;
+                immersionDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            immersionDropdown.addEventListener('click', function (event) {
+                selectedFilters.immersionType = event.target.textContent;
+                document.getElementById('dropdownMenuButton').textContent = selectedFilters.immersionType;
+                applyFilters();
+            });
+        }
+        // Function to populate the new dropdown menu
+        function populateImmersivityDegreeDropdown(projectsData) {
+            const immersionDegreeDropdown = document.getElementById('immersion-degree-dropdown');
+            const immersionDegrees = new Set();
+
+            // Extract unique immersivity degrees from projects data
+            projectsData.forEach(project => {
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"]) {
+                    immersionDegrees.add(project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"]);
+                }
+            });
+
+            // Create dropdown items for immersivity degrees
+            immersionDegrees.forEach(degree => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${degree}</a>`;
+                immersionDegreeDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            immersionDegreeDropdown.addEventListener('click', function (event) {
+                selectedFilters.immersionDegree = event.target.textContent;
+                document.getElementById('immersionDegreeDropdownButton').textContent = selectedFilters.immersionDegree;
+                applyFilters();
+            });
+        }
+
+
+        // Function to populate the dropdown menu for display device types
+        function populateDisplayDeviceTypeDropdown(projectsData) {
+            const displayDeviceTypeDropdown = document.getElementById('display-device-type-dropdown');
+            const displayDeviceTypes = new Set();
+
+            // Extract unique display device types from projects data
+            projectsData.forEach(project => {
+                if (project["Hardware"]) {
+                    const hardware = project["Hardware"];
+                    if (hardware["Hardware_DisplayDevicesID"]) {
+                        hardware["Hardware_DisplayDevicesID"].forEach(displayDevice => {
+                            if (displayDevice["DisplayDevicesID_DeviceTypeID"]) {
+                                displayDeviceTypes.add(displayDevice["DisplayDevicesID_DeviceTypeID"]);
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Create dropdown items for display device types
+            displayDeviceTypes.forEach(type => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${type}</a>`;
+                displayDeviceTypeDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            displayDeviceTypeDropdown.addEventListener('click', function (event) {
+                selectedFilters.displayDeviceType = event.target.textContent;
+                document.getElementById('displayDeviceTypeDropdownButton').textContent = selectedFilters.displayDeviceType;
+                applyFilters();
+            });
+        }
+
+
+        // Function to populate the new dropdown menu for progress state
+        function populateProgressStateDropdown(projectsData) {
+            const progressStateDropdown = document.getElementById('progress-state-dropdown');
+            const progressStates = new Set();
+
+            // Extract unique progress states from projects data
+            projectsData.forEach(project => {
+                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ProgressStateID"]) {
+                    progressStates.add(project["Non Technical Description"]["NonTechnicalDescription_ProgressStateID"]);
+                }
+            });
+
+            // Create dropdown items for progress states
+            progressStates.forEach(state => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${state}</a>`;
+                progressStateDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            progressStateDropdown.addEventListener('click', function (event) {
+                selectedFilters.progressState = event.target.textContent;
+                document.getElementById('progressStateDropdownButton').textContent = selectedFilters.progressState;
+                applyFilters();
+            });
+        }
+
+
+        // Function to apply filters
+        function applyFilters() {
+            const filteredProjects = projectsData.filter(project => {
+                const immersionType = selectedFilters.immersionType;
+                const immersionDegree = selectedFilters.immersionDegree;
+                const progressState = selectedFilters.progressState;
+                const displayDeviceType = selectedFilters.displayDeviceType;
+
+                const projectImmersionType = project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"];
+                const projectImmersivityDegree = project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"];
+                const projectProgressState = project["Non Technical Description"]["NonTechnicalDescription_ProgressStateID"];
+
+                const hardwareDisplayDevices = project["Hardware"]["Hardware_DisplayDevicesID"];
+                const projectDisplayDeviceTypes = hardwareDisplayDevices ? hardwareDisplayDevices.map(device => device["DisplayDevicesID_DeviceTypeID"]) : [];
+
+                const filterByImmersionType = immersionType === 'All Immersion Type' || projectImmersionType === immersionType;
+                const filterByImmersivityDegree = immersionDegree === 'All Immersivity Degrees' || projectImmersivityDegree === immersionDegree;
+                const filterByProgressState = progressState === 'All Progress States' || projectProgressState === progressState;
+                const filterByDisplayDeviceType = displayDeviceType === 'All Display Device Types' || projectDisplayDeviceTypes.includes(displayDeviceType);
+
+                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType;
+            });
+            displayProjects(filteredProjects, currentPage);
+            setupPagination(filteredProjects);
+        }
+
+
+
+        // Function to set up pagination
+        function setupPagination(projectsData) {
+            const totalPages = Math.ceil(projectsData.length / projectsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            // Create left arrow button
+            const leftArrowLi = document.createElement('li');
+            leftArrowLi.classList.add('page-item');
+            const leftArrow = document.createElement('a');
+            leftArrow.classList.add('page-link');
+            leftArrow.href = '#';
+            leftArrow.innerHTML = '&laquo;'; // Left arrow symbol
+            leftArrowLi.appendChild(leftArrow);
+            paginationContainer.appendChild(leftArrowLi);
+
+            // Add event listener to left arrow button
+            leftArrow.addEventListener('click', function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayProjects(projectsData, currentPage);
+                    updatePaginationLinks();
+                }
+            });
+
+            // Create pagination links
+            let startPage = 1;
+            let endPage = totalPages;
+            if (totalPages > 10) {
+                const half = Math.floor(10 / 2);
+                if (currentPage > half) {
+                    startPage = currentPage - half;
+                    endPage = currentPage + half - 1;
+                    if (endPage > totalPages) {
+                        endPage = totalPages;
+                        startPage = endPage - 9;
+                    }
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                li.classList.add('page-item');
+                const a = document.createElement('a');
+                a.classList.add('page-link');
+                a.href = '#';
+                a.textContent = i;
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+
+                // Add event listener to each pagination link
+                a.addEventListener('click', function () {
+                    currentPage = i;
+                    displayProjects(projectsData, currentPage);
+                    updatePaginationLinks();
+                });
+            }
+
+            // Create right arrow button
+            const rightArrowLi = document.createElement('li');
+            rightArrowLi.classList.add('page-item');
+            const rightArrow = document.createElement('a');
+            rightArrow.classList.add('page-link');
+            rightArrow.href = '#';
+            rightArrow.innerHTML = '&raquo;'; // Right arrow symbol
+            rightArrowLi.appendChild(rightArrow);
+            paginationContainer.appendChild(rightArrowLi);
+
+            // Add event listener to right arrow button
+            rightArrow.addEventListener('click', function () {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayProjects(projectsData, currentPage);
+                    updatePaginationLinks();
+                }
+            });
+
+            // Function to update pagination links styling
+            function updatePaginationLinks() {
+                const paginationLinks = document.querySelectorAll('.page-link');
+                paginationLinks.forEach(link => link.classList.remove('active'));
+                paginationLinks.forEach(link => {
+                    if (parseInt(link.textContent) === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>

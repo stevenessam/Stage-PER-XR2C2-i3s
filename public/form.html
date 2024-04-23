@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XR2C2 Form</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="Css/formStyle.css">
+</head>
+
+<body>
+    <!-- Form element -->
+    <form id="dynamicForm" action="http://localhost:3000/submit-form" method="POST"></form>
+
+    <!-- Modal for displaying success message -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage">Thank you! Your data has been saved.</p>
+            <button class="close-button">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to create form elements dynamically
+        function createForm(json) {
+            const form = document.getElementById('dynamicForm');
+            const formData = {};
+
+
+            // Function to extract data from list items
+            function extractListData(labelId) {
+                const divContainers = document.querySelectorAll(`div[data-label="${labelId}"]`);
+                const listData = [];
+
+                divContainers.forEach(container => {
+                    const select = container.querySelector('select');
+                    const otherInput = container.querySelector('input[data-other-for]');
+                    const listItemData = {};
+
+                    // If select dropdown exists, capture its value
+                    if (select) {
+                        const selectedValue = select.value;
+                        const childLabel = select.getAttribute('data-child-label');
+                        if (selectedValue === 'Other') {
+                            const otherOptionValue = otherInput.value.trim();
+                            if (otherOptionValue) {
+                                listItemData[otherInput.getAttribute('data-other-for')] = otherOptionValue;
+                            }
+                        } else {
+                            // Only capture the selected value from the dropdown
+                            listItemData[childLabel] = selectedValue;
+                        }
+                    }
+
+                    // Capture values of other input fields
+                    container.querySelectorAll('input').forEach(input => {
+                        const inputValue = input.value.trim();
+                        if (inputValue && input !== otherInput) { // Exclude the "Enter your option" field
+                            if (input.type.toLowerCase() === 'number') {
+                                listItemData[input.getAttribute('placeholder')] = parseInt(inputValue);
+                            } else {
+                                listItemData[input.getAttribute('placeholder')] = inputValue;
+                            }
+                        }
+                    });
+
+                    // Only push data to listData if there are values present
+                    if (Object.keys(listItemData).length !== 0) {
+                        listData.push(listItemData);
+                    }
+                });
+
+                return listData;
+            }
+
+
+            // Function to create options for dropdown select
+            function createOptions(select, options, includeOther) {
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Choose an option';
+                select.appendChild(defaultOption);
+
+                // other options
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    select.appendChild(optionElement);
+                });
+
+                if (includeOther) {
+                    const otherOption = document.createElement('option');
+                    otherOption.value = 'Other';
+                    otherOption.textContent = 'Other';
+                    select.appendChild(otherOption);
+                }
+            }
+
+
+            // Function to handle "Other" option in dropdown select
+            function handleOtherOption(select, otherInput) {
+                select.addEventListener('change', function () {
+                    const selectedValue = select.value;
+                    if (selectedValue === 'Other') {
+                        otherInput.style.display = 'block';
+                    } else {
+                        otherInput.style.display = 'none';
+                    }
+                });
+            }
+
+            // Loop through each category in the JSON data
+            json.forEach(category => {
+                Object.entries(category).forEach(([catName, attributes]) => {
+                    formData[catName] = {};
+                    const fieldset = document.createElement('fieldset');
+                    const legend = document.createElement('legend');
+                    legend.textContent = catName;
+                    fieldset.appendChild(legend);
+
+                    // Loop through each attribute in the category
+                    attributes.forEach(attr => {
+                        formData[catName][attr.label] = '';
+                        const container = document.createElement('div'); // Container for label and description
+                        const label = document.createElement('label');
+                        label.setAttribute('id', attr.label);
+                        label.textContent = attr.label;
+                        container.appendChild(label);
+                        // Add description if available
+                        if (attr.description) {
+                            const description = document.createElement('span');
+                            description.textContent = attr.description;
+                            description.classList.add('description');
+                            container.appendChild(description);
+                        }
+                        fieldset.appendChild(container);
+                        // Check attribute type and create corresponding form elements
+                        if (attr.type.toLowerCase() === 'list' && Array.isArray(attr.children[0])) {
+                            // Add button to dynamically add list items
+                            const addButton = document.createElement('button');
+                            addButton.textContent = 'Add ' + attr.label;
+                            addButton.type = 'button';
+                            addButton.onclick = () => {
+                                const listItem = document.createElement('div');
+                                listItem.setAttribute('data-label', attr.label);
+                                attr.children[0].forEach(child => {
+                                    if (child.type.toLowerCase() === 'option') {
+                                        // For option type, create select dropdown
+                                        const select = document.createElement('select');
+                                        select.setAttribute('name', catName + '_' + child.label);
+                                        select.setAttribute('id', child.label + '-dropdown');
+                                        select.setAttribute('data-child-label', child.label); // Store child label
+                                        createOptions(select, child.options, child.other);
+                                        if (child.other) {
+                                            // Create input field for "Other" option
+                                            const otherInput = document.createElement('input');
+                                            otherInput.setAttribute('type', 'text');
+                                            otherInput.setAttribute('placeholder', 'Enter your option');
+                                            otherInput.setAttribute('data-other-for', child.label);
+                                            otherInput.style.display = 'none';
+                                            listItem.appendChild(otherInput);
+                                            // Event listener for "Other" option
+                                            handleOtherOption(select, otherInput);
+                                        }
+                                        listItem.appendChild(select);
+                                    } else if (child.type.toLowerCase() === 'string') {
+                                        // For string type, create input element with type text
+                                        const input = document.createElement('input');
+                                        input.setAttribute('name', catName + '_' + child.label);
+                                        input.setAttribute('type', 'text');
+                                        input.setAttribute('placeholder', child.label);
+                                        listItem.appendChild(input);
+                                    } else if (child.type.toLowerCase() === 'integer') {
+                                        // For integer type, create input element with type number
+                                        const input = document.createElement('input');
+                                        input.setAttribute('name', catName + '_' + child.label);
+                                        input.setAttribute('type', 'number');
+                                        input.setAttribute('placeholder', child.label);
+                                        listItem.appendChild(input);
+                                    }
+                                });
+                                fieldset.insertBefore(listItem, addButton);
+                            };
+                            fieldset.appendChild(addButton);
+                        } else if (attr.type.toLowerCase() === 'boolean') {
+                            // Add radio buttons for boolean type
+                            const radioTrue = document.createElement('input');
+                            radioTrue.setAttribute('type', 'radio');
+                            radioTrue.setAttribute('name', catName + '_' + attr.label);
+                            radioTrue.setAttribute('value', 'true');
+                            const labelTrue = document.createElement('label');
+                            labelTrue.textContent = 'Yes';
+                            labelTrue.appendChild(radioTrue);
+                            fieldset.appendChild(labelTrue);
+
+                            const radioFalse = document.createElement('input');
+                            radioFalse.setAttribute('type', 'radio');
+                            radioFalse.setAttribute('name', catName + '_' + attr.label);
+                            radioFalse.setAttribute('value', 'false');
+                            const labelFalse = document.createElement('label');
+                            labelFalse.textContent = 'No';
+                            labelFalse.appendChild(radioFalse);
+                            fieldset.appendChild(labelFalse);
+                        } else if (attr.type.toLowerCase() === 'image' || attr.type.toLowerCase() === 'video') {
+                            // Capture file paths for image or video type
+                            const fileInput = document.createElement('input');
+                            fileInput.setAttribute('type', 'file');
+                            fileInput.setAttribute('multiple', 'true');
+                            fileInput.setAttribute('accept', `${attr.type.toLowerCase()}/*`);
+                            const folderName = attr.type.toLowerCase() === 'image' ? 'Images' : 'Videos';
+                            fileInput.addEventListener('change', function () {
+                                const files = Array.from(this.files);
+                                const fileArray = files.map(file => `mediaFiles/${folderName}/${file.name}`);
+
+                                // Check if the attribute has children
+                                if (attr.children) {
+                                    // Format the file paths based on the children structure
+                                    const childLabel = attr.children[0][0].label;
+                                    formData[catName][attr.label] = [{ [childLabel]: fileArray }];
+                                } else {
+                                    // Store the file paths directly
+                                    formData[catName][attr.label] = fileArray;
+                                }
+                            });
+                            fieldset.appendChild(fileInput);
+                        } else if (attr.type.toLowerCase() === 'date') {
+                            // For date type, create input element with type date
+                            const input = document.createElement('input');
+                            input.setAttribute('name', catName + '_' + attr.label);
+                            input.setAttribute('type', 'date');
+                            fieldset.appendChild(input);
+                        } else if (attr.type.toLowerCase() === 'integer') {
+                            // For integer type, create input element with type number
+                            const input = document.createElement('input');
+                            input.setAttribute('name', catName + '_' + attr.label);
+                            input.setAttribute('type', 'number');
+                            fieldset.appendChild(input);
+                        } else if (attr.type.toLowerCase() === 'option' && Array.isArray(attr.options)) {
+                            // For string type with options, create select dropdown
+                            const select = document.createElement('select');
+                            select.setAttribute('name', catName + '_' + attr.label);
+                            select.setAttribute('id', attr.label + '-dropdown');
+                            createOptions(select, attr.options, attr.other);
+                            if (attr.other) {
+                                // Create input field for "Other" option
+                                const otherInput = document.createElement('input');
+                                otherInput.setAttribute('type', 'text');
+                                otherInput.setAttribute('placeholder', 'Enter your option');
+                                otherInput.setAttribute('data-other-for', attr.label);
+                                otherInput.style.display = 'none';
+                                fieldset.appendChild(otherInput);
+                                // Event listener for "Other" option
+                                handleOtherOption(select, otherInput);
+                            }
+                            fieldset.appendChild(select);
+                        } else {
+                            // For other types, create textarea element
+                            const textarea = document.createElement('textarea');
+                            textarea.setAttribute('placeholder', 'Type Here');
+                            textarea.setAttribute('name', catName + '_' + attr.label);
+                            fieldset.appendChild(textarea);
+                        }
+                    });
+                    form.appendChild(fieldset);
+                });
+            });
+
+            // Add submit button to the form
+            const submitButton = document.createElement('button');
+            submitButton.textContent = 'Submit';
+            submitButton.type = 'submit';
+            form.appendChild(submitButton);
+
+            // Attach event listener for form submission
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formDataOutput = {};
+                // Convert form data into JSON format
+                Object.entries(formData).forEach(([category, attributes]) => {
+                    formDataOutput[category] = {};
+                    Object.entries(attributes).forEach(([label, value]) => {
+                        if (Array.isArray(value)) {
+                            formDataOutput[category][label] = value;
+                        } else {
+                            const input = document.querySelector(`input[name="${category}_${label}"]`);
+                            const textarea = document.querySelector(`textarea[name="${category}_${label}"]`);
+                            const select = document.querySelector(`select[name="${category}_${label}"]`);
+                            if (select) {
+                                if (select.value === 'Other') {
+                                    const otherInput = document.querySelector(`input[data-other-for="${label}"]`);
+                                    formDataOutput[category][label] = otherInput.value.trim();
+                                } else {
+                                    formDataOutput[category][label] = select.value;
+                                }
+                            } else if (input) {
+                                // Convert boolean values from strings to actual boolean values
+                                if (input.type === 'checkbox' || input.type === 'radio') {
+                                    formDataOutput[category][label] = Boolean(input.checked);
+                                } else if (input.type === 'number') {
+                                    // Parse integer values to integers
+                                    formDataOutput[category][label] = parseInt(input.value);
+                                } else {
+                                    formDataOutput[category][label] = input.value;
+                                }
+                            } else if (textarea) {
+                                // Replace newline characters with <br> tags
+                                formDataOutput[category][label] = textarea.value.replace(/\n/g, '<br>');
+                            } else {
+                                const listData = extractListData(label);
+                                formDataOutput[category][label] = listData;
+                            }
+                        }
+                    });
+                });
+
+                // Reformat the formDataOutput using AttributeID as keys
+                const reformattedFormDataOutput = {};
+                Object.entries(formDataOutput).forEach(([category, attributes]) => {
+                    reformattedFormDataOutput[category] = {};
+                    Object.entries(attributes).forEach(([label, value]) => {
+                        // Find the AttributeID for the current label
+                        const attribute = json[0][category].find(attr => attr.label === label);
+                        if (attribute) {
+                            reformattedFormDataOutput[category][attribute.AttributeID] = value;
+                        }
+                        // Check if the attribute has children and reformat their data
+                        if (Array.isArray(value) && attribute.children) {
+                            reformattedFormDataOutput[category][attribute.AttributeID] = value.map(child => {
+                                const childData = {};
+                                Object.entries(child).forEach(([childLabel, childValue]) => {
+                                    const childAttribute = attribute.children[0].find(attr => attr.label === childLabel);
+                                    if (childAttribute) {
+                                        childData[childAttribute.AttributeID] = childValue;
+                                    }
+                                });
+                                return childData;
+                            });
+                        }
+                    });
+                });
+
+                console.log(reformattedFormDataOutput);
+
+                // Submit the form data
+                fetch(form.action, {
+                    method: form.method,
+                    body: JSON.stringify(reformattedFormDataOutput),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Display success modal and refresh page on modal close
+                            document.getElementById('successModal').style.display = 'block';
+                            document.querySelector('.close-button').addEventListener('click', function () {
+                                document.getElementById('successModal').style.display = 'none';
+                                location.reload(); // Refresh the page
+                            });
+                        } else {
+                            throw new Error('Failed to submit form');
+                        }
+                    })
+                    .catch(error => console.error('Error submitting form:', error));
+            });
+
+
+
+        }
+
+        // Fetch JSON data from file
+        fetch('Json_Structure.json')
+            .then(response => response.json())
+            .then(data => createForm(data))
+            .catch(error => console.error('Error fetching JSON:', error));
+
+    </script>
+</body>
+
+</html>

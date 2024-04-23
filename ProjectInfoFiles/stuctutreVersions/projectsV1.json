@@ -1,0 +1,125 @@
+[
+    {
+        "id": 1,
+        "Interview": {
+            "Date": "date",
+            "Person_Interviewed": "String",
+            "Format": "String",
+            "Duration": "String"
+        },
+        "Non_Technical_Description": {
+            "Name": "String",
+            "Personne_responsable_Contact": "String",
+            "Funding": "String",
+            "Goal": "String",
+            "Immersion_Type": "String",
+            "Immersivity_Degree": "String",
+            "Unique_OR_Redoable": "String",
+            "Typical_experience ": "String",
+            "Progress_State": "String"
+        },
+        "Hardware": {
+            "Computer_Dependent": "String",
+            "Computer_Particular_Aspects": "String",
+            "GPU_Dependant": "String",
+            "GPU_Model_Info": "String",
+            "Display_Devices": [
+                {
+                    "Device_Type": "TYPE 1",
+                    "Quantity": 2
+                },
+                {
+                    "Device_Type": "TYPE 2",
+                    "Quantity": 1
+                }
+            ],
+            "Tracking_Devices": "String",
+            "Input_Devices": "String",
+            "Output_Devices": "String",
+            "Cabling": "String",
+            "Audio_Equipment": "String",
+            "Other_Hardware_Onformation": "String"
+        },
+        "Software": {
+            "Executable_File": "String",
+            "Simulation": "String",
+            "Platform": "String",
+            "Dependencies": "String",
+            "Source_Code": "String",
+            "Other_Software_Onformation": "String"
+        },
+        "Production": {
+            "3D_Assets_Tools": "String",
+            "Sounds_Design_SpacialAudio": "String",
+            "Code_Libraries_Custom": "String",
+            "Engine_Engine_Version": "String",
+            "Plugins": "String",
+            "Models": "String",
+            "Materials_Textures": "String",
+            "Source_Video_Files": "String",
+            "Reusable_Homemade_Assets": "String",
+            "Artists_Name": "String",
+            "Narrative_scripts": "String",
+            "Other_Dependencies": "String",
+            "Other_Production_Onformation": "String"
+        },
+        "Target_Users": {
+            "Disability_Accessibility": "String",
+            "Accessibility_Lay_Users": "String",
+            "Number_Of_Participants": "String",
+            "Multiplayer": "String",
+            "Target_Audience": "String",
+            "Comments": "String"
+        },
+        "Facility": {
+            "Experience_Time": "String",
+            "Timeline": "String",
+            "Installation_Crew": "String",
+            "Surface": "String",
+            "Physical_Delimitations": "String",
+            "Virtual_Delimitations": "String",
+            "Walls": "String",
+            "Projection": "String",
+            "Standing_or_Sitting": "String",
+            "Lighting": "String",
+            "Acoustics": "String",
+            "Sensory_Inputs": "String",
+            "Sensory_outputs ": "String",
+            "Supervision": "String",
+            "Other_External_Onputs_Outputs": "String",
+            "Spatial_Flexibility": "String",
+            "Team": "String",
+            "Sanitary_Conditions": "String"
+        },
+        "Experience_Waiting_Line": {
+            "Waiting_Time": "String",
+            "Visibility": "String",
+            "Audibility": "String",
+            "Capacity": "String",
+            "Other_Experience_Waiting_Line_Information": "String"
+        },
+        "Privacy": {
+            "Personal_Data": "String",
+            "Exposure": "String",
+            "Confidentiality": "String",
+            "License": "String",
+            "Other_Privacy_Information": "String"
+        },
+        "Documentation": {
+            "Existing_Documentation": "String",
+            "Past_Installations": "String",
+            "Script": "String",
+            "Design": "String",
+            "Schematics": "String",
+            "Scientific_Publication": "String",
+            "Other_Documentation_Information": "String"
+        },
+        "Experience_Has_Evaluation": {
+            "Questionnaires": "String",
+            "Protocol": "String",
+            "Quantitative_Measurements": "String",
+            "Sample": "String",
+            "Devices": "String"
+        }
+    }
+]

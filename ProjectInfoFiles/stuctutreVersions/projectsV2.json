@@ -1,0 +1,677 @@
+[
+    {
+        "id": 1,
+        "Interview": [
+            {
+                "label": "Date",
+                "type": "date",
+                "value": "2024-04-08"
+            },
+            {
+                "label": "Person_Interviewed",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Format",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Duration",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Non_Technical_Description": [
+            {
+                "label": "Name",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Personne_responsable_Contact",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Personne_Information",
+                            "type": "String",
+                            "value": "Name 1"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Personne_Information",
+                            "type": "String",
+                            "value": "Name 2"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Funding",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Goal",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Immersion_Type",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Immersivity_Degree",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Unique_OR_Redoable",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Typical_experience ",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Progress_State",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Hardware": [
+            {
+                "label": "Computer_Dependent",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Computer_Quantity",
+                "type": "Integer",
+                "value": 2
+            },
+            {
+                "label": "Computer_Particular_Aspects",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "GPU_Dependant",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "GPU_Model_Info",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Display_Devices",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Device_Type",
+                            "type": "String",
+                            "value": "TYPE 1"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Device_Type",
+                            "type": "String",
+                            "value": "TYPE 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Tracking_Devices",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Input_Devices",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Output_Devices",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Cabling",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Audio_Equipment",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Equipment_Type",
+                            "type": "String",
+                            "value": "TYPE 1"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Equipment_Type",
+                            "type": "String",
+                            "value": "TYPE 1"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Other_Hardware_Onformation",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Software": [
+            {
+                "label": "Executable_File",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Simulation",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Platform",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Dependencies",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Source_Code",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_Software_Onformation",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Production": [
+            {
+                "label": "3D_Assets_Tools",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Sounds_Design_Spatial_Audio",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Sounds_Audio_Type",
+                            "type": "String",
+                            "value": "TYPE 1"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Sounds_Audio_Type",
+                            "type": "String",
+                            "value": "TYPE 2"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Code_Libraries_Custom",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Engine_Engine_Version",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Plugins",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Plugins_Type",
+                            "type": "String",
+                            "value": "Type 1"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Plugins_Type",
+                            "type": "String",
+                            "value": "Type 2"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Models",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Model_Name",
+                            "type": "String",
+                            "value": "Type 2"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Model_Name",
+                            "type": "String",
+                            "value": "Type 2"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Materials_Textures",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Source_Video_Files",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Reusable_Homemade_Assets",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Assets_Information",
+                            "type": "String",
+                            "value": "Type 2"
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Assets_Information",
+                            "type": "String",
+                            "value": "Type 2"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Artists_Name",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Narrative_scripts",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Scripts_Description",
+                            "type": "String",
+                            "value": "Type 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Scripts_Description",
+                            "type": "String",
+                            "value": "Type 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Other_Dependencies",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_Production_Onformation",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Target_Users": [
+            {
+                "label": "Disability_Accessibility",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Accessibility_Lay_Users",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Number_Of_Participants",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "Participant",
+                            "type": "String",
+                            "value": "Type 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ],
+                    [
+                        {
+                            "label": "Participant",
+                            "type": "String",
+                            "value": "Type 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Multiplayer",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Target_Audience",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Comments",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Facility": [
+            {
+                "label": "Experience_Time",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Timeline",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Installation_Crew",
+                "type": "Integer",
+                "value": 1
+            },
+            {
+                "label": "Surface",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Physical_Delimitations",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Virtual_Delimitations",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Walls",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Projection",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Standing_or_Sitting",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Lighting",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Acoustics",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Sensory_Inputs",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Sensory_outputs ",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Supervision",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_External_Onputs_Outputs",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Spatial_Flexibility",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Team",
+                "type": "list",
+                "children": [
+                    [
+                        {
+                            "label": "cast",
+                            "type": "String",
+                            "value": "Actor 1"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ],
+                    [
+                        {
+                            "label": "cast",
+                            "type": "String",
+                            "value": "Actor 2"
+                        },
+                        {
+                            "label": "Quantity",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Sanitary_Conditions",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Experience_Waiting_Line": [
+            {
+                "label": "Waiting_Time",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Visibility",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Audibility",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Capacity",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_Experience_Waiting_Line_Information",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Privacy": [
+            {
+                "label": "Personal_Data",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Exposure",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Confidentiality",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "License",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_Privacy_Information",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Documentation": [
+            {
+                "label": "Existing_Documentation",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Existing_Documentation_Information",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Past_Installations",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Script",
+                "type": "Boolean",
+                "value": true
+            },
+            {
+                "label": "Script_Information",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Design",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Schematics",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Scientific_Publication",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Other_Documentation_Information",
+                "type": "String",
+                "value": "text"
+            }
+        ],
+        "Experience_Has_Evaluation": [
+            {
+                "label": "Questionnaires",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Protocol",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Quantitative_Measurements",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Sample",
+                "type": "String",
+                "value": "text"
+            },
+            {
+                "label": "Devices",
+                "type": "String",
+                "value": "text"
+            }
+        ]
+    }
+]

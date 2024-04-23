@@ -1,0 +1,243 @@
+/* Resetting default margin and padding */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+form,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+#dynamicForm {
+    margin-top: 30px;
+
+}
+
+.container {
+    width: 100%;
+    padding: 0 10%;
+    /* Set padding to create space on left and right */
+    box-sizing: border-box;
+    /* Include padding in total width */
+}
+
+.form-container {
+    width: 80%;
+    /* Set form width to 80% of container */
+    margin: 50px auto;
+    /* Center the form */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /* Add padding to form */
+}
+
+fieldset {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+fieldset:last-child {
+    margin-bottom: 10px;
+}
+
+legend {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="string"],
+input[type="integer"],
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
+textarea {
+    width: calc(100% - 22px);
+    /* Adjust input width */
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+    width: calc(15% - 22px);
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button[type="submit"],
+button[type="button"] {
+    background-color: #3e4349;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #3e4349;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    width: 30%;
+    height: 50px;
+    margin-top: 13px;
+    margin-bottom: 30px;
+
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #1c89ff;
+}
+
+/* Additional styling for list items */
+.list-container {
+    margin-bottom: 10px;
+}
+
+.list-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.add-button {
+    margin-top: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 8px;
+}
+
+/* Close Button */
+.close-button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#modalMessage {
+    text-align: center;
+}
+
+
+/* CSS for styling description spans */
+.description {
+    font-size: 14px;
+    color: #969696;
+    margin-top: 5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+
+/* Dropdown select */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Styling when dropdown is focused */
+select:focus {
+    outline: none;
+    border-color: #1c89ff;
+    box-shadow: 0 0 5px rgba(28, 137, 255, 0.5);
+}
+
+/* Styling for dropdown options */
+select option {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Styling for dropdown when expanded */
+select option:hover {
+    background-color: #f0f0f0;
+}

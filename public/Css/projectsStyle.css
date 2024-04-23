@@ -21,7 +21,7 @@
     border-radius: 5px;
     padding: 5px 10px;
     margin-right: 5px;
-    margin-bottom: 1%;
+    margin-top: 2%;
     width: auto;
 }
 
@@ -33,6 +33,7 @@
     background-color: #fff;
     border: 1px solid #ced4da;
     color: #495057;
+    margin-bottom: 5%;
 }
 
 .dropdown-toggle:focus {
@@ -57,8 +58,6 @@
 
 
 .dropdown-col {
-    margin-bottom: 2%;
-    margin-top: 2%;
     flex: 0;
 }
 

@@ -93,6 +93,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="dropdown-col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="trackingDevicesDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Tracking Devices
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="trackingDevicesDropdownButton"
+                            id="tracking-devices-dropdown">
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
 
             </div>
 
@@ -101,7 +113,7 @@
                 <!-- Selected filters will be displayed here -->
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="projects-container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3" id="projects-container">
                 <!-- Project cards will be dynamically populated here -->
             </div>
             <nav aria-label="Page navigation">
@@ -128,7 +140,8 @@
             progressState: 'All Progress States',
             displayDeviceType: 'All Display Device Types',
             soundsAudioType: 'All Sound Audio Types',
-            audioEquipmentType: 'All Audio Equipment Types'
+            audioEquipmentType: 'All Audio Equipment Types',
+            trackingDevice: 'All Tracking Devices'
         };
 
         // Fetch projects data from server
@@ -143,6 +156,7 @@
                 populateDisplayDeviceTypeDropdown(data);
                 populateSoundsAudioTypeDropdown(data);
                 populateAudioEquipmentTypeDropdown(data);
+                populateTrackingDevicesDropdown(data);
                 setupPagination(projectsData);
                 applyFilters();
             })
@@ -402,6 +416,31 @@
             });
         }
 
+        // Function to populate the dropdown menu for tracking devices
+        function populateTrackingDevicesDropdown(projectsData) {
+            const trackingDevicesDropdown = document.getElementById('tracking-devices-dropdown');
+            const trackingDevices = new Set();
+
+            // Extract unique tracking devices from projects data
+            projectsData.forEach(project => {
+                if (project["Hardware"] && project["Hardware"]["Hardware_TrackingDevicesID"]) {
+                    trackingDevices.add(project["Hardware"]["Hardware_TrackingDevicesID"]);
+                }
+            });
+
+            // Create dropdown items for tracking devices
+            trackingDevices.forEach(device => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${device}</a>`;
+                trackingDevicesDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            trackingDevicesDropdown.addEventListener('click', function (event) {
+                selectedFilters.trackingDevice = event.target.textContent;
+                applyFilters();
+            });
+        }
         // Function to apply filters
         function applyFilters() {
             const filteredProjects = projectsData.filter(project => {
@@ -411,6 +450,7 @@
                 const displayDeviceType = selectedFilters.displayDeviceType;
                 const soundsAudioType = selectedFilters.soundsAudioType;
                 const audioEquipmentType = selectedFilters.audioEquipmentType;
+                const trackingDevice = selectedFilters.trackingDevice;
 
                 const projectImmersionType = project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"];
                 const projectImmersivityDegree = project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"];
@@ -432,6 +472,7 @@
                         }
                     });
                 }
+                const projectTrackingDevice = project["Hardware"]["Hardware_TrackingDevicesID"];
 
                 const filterByImmersionType = immersionType === 'All Immersion Type' || projectImmersionType === immersionType;
                 const filterByImmersivityDegree = immersionDegree === 'All Immersivity Degrees' || projectImmersivityDegree === immersionDegree;
@@ -439,21 +480,21 @@
                 const filterByDisplayDeviceType = displayDeviceType === 'All Display Device Types' || projectDisplayDeviceTypes.includes(displayDeviceType);
                 const filterBySoundsAudioType = soundsAudioType === 'All Sound Audio Types' || projectSoundsAudioTypes.includes(soundsAudioType);
                 const filterByAudioEquipmentType = audioEquipmentType === 'All Audio Equipment Types' || projectAudioEquipmentTypes.includes(audioEquipmentType);
+                const filterByTrackingDevice = trackingDevice === 'All Tracking Devices' || projectTrackingDevice === trackingDevice;
 
-                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType && filterBySoundsAudioType && filterByAudioEquipmentType;
+                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType && filterBySoundsAudioType && filterByAudioEquipmentType && filterByTrackingDevice;
             });
             displayProjects(filteredProjects, currentPage);
             setupPagination(filteredProjects);
             displaySelectedFilters();
         }
-
         // Function to display selected filters
         function displaySelectedFilters() {
             const selectedFiltersSection = document.getElementById('selectedFiltersSection');
             selectedFiltersSection.innerHTML = ''; // Clear previous content
 
             Object.values(selectedFilters).forEach(filter => {
-                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types' && filter !== 'All Sound Audio Types' && filter !== 'All Audio Equipment Types') {
+                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types' && filter !== 'All Sound Audio Types' && filter !== 'All Audio Equipment Types' && filter !== 'All Tracking Devices') {
                     const filterElement = document.createElement('div');
                     filterElement.classList.add('selected-filter');
                     filterElement.innerHTML = `${filter} <span onclick="removeFilter('${filter}')">&times;</span>`;
@@ -479,6 +520,8 @@
                 selectedFilters.soundsAudioType = 'All Sound Audio Types';
             } else if (filter === selectedFilters.audioEquipmentType) {
                 selectedFilters.audioEquipmentType = 'All Audio Equipment Types';
+            } else if (filter === selectedFilters.trackingDevice) {
+                selectedFilters.trackingDevice = 'All Tracking Devices';
             }
 
             applyFilters(); // Apply the updated filters

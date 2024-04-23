@@ -11,7 +11,7 @@
     <style>
         .card-img-top {
             object-fit: cover;
-            height: 200px;
+            height: 250px;
         }
 
         .card-title {
@@ -63,6 +63,15 @@
             margin-bottom: 2%;
             margin-top: 2%;
             flex: 0;
+        }
+
+
+        .card {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -238,19 +247,21 @@
                 const card = document.createElement('div');
                 card.classList.add('col', 'd-flex');
                 card.innerHTML = `
-            <div class="card shadow-sm w-100">
-                <img src="${imageUrl}" class="card-img-top" alt="Project Image">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${projectName}</h5>
-                    <p class="card-text">${projectGoal}</p>
-                    <div class="mt-auto">
-                        <div class="btn-group w-100">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    onclick="redirectToProjectInformation(${projectId})">View</button></div>
-                    </div>
-                </div>
-            </div>
-        `;
+                    <div class="card shadow-sm w-100">
+                        <a href="#" onclick="redirectToProjectInformation(${projectId})">
+                            <img src="${imageUrl}" class="card-img-top" alt="Project Image">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${projectName}</h5>
+                            <p class="card-text">${projectGoal}</p>
+                            <div class="mt-auto">
+                                <div class="btn-group w-100">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        onclick="redirectToProjectInformation(${projectId})">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
 
                 projectsContainer.appendChild(card);
             });

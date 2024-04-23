@@ -81,6 +81,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="dropdown-col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="audioEquipmentTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Audio Equipment Type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="audioEquipmentTypeDropdownButton"
+                            id="audio-equipment-type-dropdown">
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
 
             </div>
 
@@ -115,7 +127,8 @@
             immersionDegree: 'All Immersivity Degrees',
             progressState: 'All Progress States',
             displayDeviceType: 'All Display Device Types',
-            soundsAudioType: 'All Sound Audio Types'
+            soundsAudioType: 'All Sound Audio Types',
+            audioEquipmentType: 'All Audio Equipment Types'
         };
 
         // Fetch projects data from server
@@ -129,6 +142,7 @@
                 populateProgressStateDropdown(data);
                 populateDisplayDeviceTypeDropdown(data);
                 populateSoundsAudioTypeDropdown(data);
+                populateAudioEquipmentTypeDropdown(data);
                 setupPagination(projectsData);
                 applyFilters();
             })
@@ -358,6 +372,35 @@
             });
         }
 
+        // Function to populate the dropdown menu for audio equipment types
+        function populateAudioEquipmentTypeDropdown(projectsData) {
+            const audioEquipmentTypeDropdown = document.getElementById('audio-equipment-type-dropdown');
+            const audioEquipmentTypes = new Set();
+
+            // Extract unique audio equipment types from projects data
+            projectsData.forEach(project => {
+                if (project["Hardware"] && project["Hardware"]["Hardware_AudioEquipmentID"]) {
+                    project["Hardware"]["Hardware_AudioEquipmentID"].forEach(audio => {
+                        if (audio["AudioEquipmentID_EquipmentTypeID"]) {
+                            audioEquipmentTypes.add(audio["AudioEquipmentID_EquipmentTypeID"]);
+                        }
+                    });
+                }
+            });
+
+            // Create dropdown items for audio equipment types
+            audioEquipmentTypes.forEach(type => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${type}</a>`;
+                audioEquipmentTypeDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            audioEquipmentTypeDropdown.addEventListener('click', function (event) {
+                selectedFilters.audioEquipmentType = event.target.textContent;
+                applyFilters();
+            });
+        }
 
         // Function to apply filters
         function applyFilters() {
@@ -367,7 +410,7 @@
                 const progressState = selectedFilters.progressState;
                 const displayDeviceType = selectedFilters.displayDeviceType;
                 const soundsAudioType = selectedFilters.soundsAudioType;
-
+                const audioEquipmentType = selectedFilters.audioEquipmentType;
 
                 const projectImmersionType = project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"];
                 const projectImmersivityDegree = project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"];
@@ -381,15 +424,23 @@
                         projectSoundsAudioTypes.push(sound["SoundsDesignSpatialAudioID_SoundsAudioTypeID"]);
                     });
                 }
+                const projectAudioEquipmentTypes = [];
+                if (project["Hardware"] && project["Hardware"]["Hardware_AudioEquipmentID"]) {
+                    project["Hardware"]["Hardware_AudioEquipmentID"].forEach(audio => {
+                        if (audio["AudioEquipmentID_EquipmentTypeID"]) {
+                            projectAudioEquipmentTypes.push(audio["AudioEquipmentID_EquipmentTypeID"]);
+                        }
+                    });
+                }
 
                 const filterByImmersionType = immersionType === 'All Immersion Type' || projectImmersionType === immersionType;
                 const filterByImmersivityDegree = immersionDegree === 'All Immersivity Degrees' || projectImmersivityDegree === immersionDegree;
                 const filterByProgressState = progressState === 'All Progress States' || projectProgressState === progressState;
                 const filterByDisplayDeviceType = displayDeviceType === 'All Display Device Types' || projectDisplayDeviceTypes.includes(displayDeviceType);
                 const filterBySoundsAudioType = soundsAudioType === 'All Sound Audio Types' || projectSoundsAudioTypes.includes(soundsAudioType);
+                const filterByAudioEquipmentType = audioEquipmentType === 'All Audio Equipment Types' || projectAudioEquipmentTypes.includes(audioEquipmentType);
 
-
-                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType && filterBySoundsAudioType;
+                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType && filterBySoundsAudioType && filterByAudioEquipmentType;
             });
             displayProjects(filteredProjects, currentPage);
             setupPagination(filteredProjects);
@@ -402,7 +453,7 @@
             selectedFiltersSection.innerHTML = ''; // Clear previous content
 
             Object.values(selectedFilters).forEach(filter => {
-                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types' && filter !== 'All Sound Audio Types') {
+                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types' && filter !== 'All Sound Audio Types' && filter !== 'All Audio Equipment Types') {
                     const filterElement = document.createElement('div');
                     filterElement.classList.add('selected-filter');
                     filterElement.innerHTML = `${filter} <span onclick="removeFilter('${filter}')">&times;</span>`;
@@ -426,6 +477,8 @@
                 selectedFilters.displayDeviceType = 'All Display Device Types';
             } else if (filter === selectedFilters.soundsAudioType) {
                 selectedFilters.soundsAudioType = 'All Sound Audio Types';
+            } else if (filter === selectedFilters.audioEquipmentType) {
+                selectedFilters.audioEquipmentType = 'All Audio Equipment Types';
             }
 
             applyFilters(); // Apply the updated filters

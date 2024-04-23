@@ -80,3 +80,73 @@
 - Implémentation d'une fonctionnalité de `filtrage par type d'immersion` à l'aide d'un `menu déroulant`.
 - Mise en place d'une `pagination` pour naviguer entre les pages de projets.
 - Redirection vers une page d'information détaillée du projet lors du clic sur un projet.
+
+
+## Guide d'implémentation des Dropdowns et du Filtrage ✅
+
+## 1. Ajouter des Dropdowns dans le HTML
+
+Dans le fichier HTML, ajoutez les éléments de menu déroulant pour chaque critère de filtrage que vous souhaitez proposer.
+
+```
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Filter by Criteria
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownButton" id="dropdownMenu">
+        <!-- Dropdown items will be populated dynamically -->
+    </ul>
+</div>
+```
+
+## 2. JavaScript pour Populer les Dropdowns et Filtrer les Données
+Dans la partie JavaScript, écrivez du code pour peupler les menus déroulants avec des options et pour filtrer les données en fonction des options sélectionnées.
+```
+// Fonction pour peupler le dropdown avec des options
+function populateDropdown(data) {
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const options = new Set();
+
+    // Extract unique options from data
+    data.forEach(item => {
+        // Extract and add option to set
+    });
+
+    // Create dropdown items for each option
+    options.forEach(option => {
+        const dropdownItem = document.createElement('li');
+        dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${option}</a>`;
+        dropdownMenu.appendChild(dropdownItem);
+    });
+
+    // Add event listener to dropdown items
+    dropdownMenu.addEventListener('click', function (event) {
+        // Handle option selection
+    });
+}
+```
+
+```
+// Fonction pour filtrer les données en fonction des options sélectionnées
+function applyFilters() {
+    // Filtrer les données en fonction des options sélectionnées dans les dropdowns
+}
+```
+```
+// Appel de la fonction populateDropdown lors du chargement des données
+fetch('http://localhost:3000/data')
+    .then(response => response.json())
+    .then(data => {
+        populateDropdown(data);
+        applyFilters();
+    })
+    .catch(error => console.error('Error fetching data:', error));
+```
+
+## 3. Initialisation de l'objet selectedFilters : L'objet selectedFilters est initialisé avec les valeurs par défaut des filtres au chargement de la page.
+```
+let selectedFilters = {
+    immersionType: 'All Immersion Type',
+    ...
+};
+```

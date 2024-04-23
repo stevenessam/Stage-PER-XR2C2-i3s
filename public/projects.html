@@ -24,11 +24,45 @@
             border-radius: 5px;
             padding: 5px 10px;
             margin-right: 5px;
+            margin-bottom: 1%;
             width: auto;
         }
 
         .selected-filter span {
             cursor: pointer;
+        }
+
+        .dropdown-toggle {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            color: #495057;
+        }
+
+        .dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        .dropdown-menu {
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .dropdown-item {
+            color: #212529;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+
+        .dropdown-col {
+            margin-bottom: 2%;
+            margin-top: 2%;
+            flex: 0;
         }
     </style>
 </head>
@@ -43,7 +77,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2 mb-4">
+                <div class="dropdown-col">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="progressStateDropdownButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,25 +85,22 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="progressStateDropdownButton"
                             id="progress-state-dropdown">
-                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Progress States</a>
-                            </li>
                             <!-- Dropdown items will be populated dynamically -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2 mb-4">
+                <div class="dropdown-col">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Filter by Immersion Type
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="immersion-dropdown">
-                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Immersion Type</a></li>
                             <!-- Dropdown items will be populated dynamically -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2 mb-4">
+                <div class="dropdown-col">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button"
                             id="immersionDegreeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,13 +108,11 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="immersionDegreeDropdownButton"
                             id="immersion-degree-dropdown">
-                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Immersivity Degrees</a>
-                            </li>
                             <!-- Dropdown items will be populated dynamically -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2 mb-4">
+                <div class="dropdown-col">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button"
                             id="displayDeviceTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,8 +120,6 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="displayDeviceTypeDropdownButton"
                             id="display-device-type-dropdown">
-                            <li><a class="dropdown-item" style="font-weight: bold;" href="#">All Display Device
-                                    Types</a></li>
                             <!-- Dropdown items will be populated dynamically -->
                         </ul>
                     </div>

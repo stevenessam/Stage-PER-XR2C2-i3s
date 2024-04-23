@@ -69,6 +69,19 @@
                         </ul>
                     </div>
                 </div>
+                <div class="dropdown-col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="soundsAudioTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter by Sound Audio Type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="soundsAudioTypeDropdownButton"
+                            id="sounds-audio-type-dropdown">
+                            <!-- Dropdown items will be populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Section to display selected filters -->
@@ -101,7 +114,8 @@
             immersionType: 'All Immersion Type',
             immersionDegree: 'All Immersivity Degrees',
             progressState: 'All Progress States',
-            displayDeviceType: 'All Display Device Types'
+            displayDeviceType: 'All Display Device Types',
+            soundsAudioType: 'All Sound Audio Types'
         };
 
         // Fetch projects data from server
@@ -114,6 +128,7 @@
                 populateImmersivityDegreeDropdown(data);
                 populateProgressStateDropdown(data);
                 populateDisplayDeviceTypeDropdown(data);
+                populateSoundsAudioTypeDropdown(data);
                 setupPagination(projectsData);
                 applyFilters();
             })
@@ -315,6 +330,33 @@
                 applyFilters();
             });
         }
+        // Function to populate the dropdown menu for sound audio types
+        function populateSoundsAudioTypeDropdown(projectsData) {
+            const soundsAudioTypeDropdown = document.getElementById('sounds-audio-type-dropdown');
+            const soundsAudioTypes = new Set();
+
+            // Extract unique sound audio types from projects data
+            projectsData.forEach(project => {
+                if (project["Production"] && project["Production"]["Production_SoundsDesignSpatialAudioID"]) {
+                    project["Production"]["Production_SoundsDesignSpatialAudioID"].forEach(sound => {
+                        soundsAudioTypes.add(sound["SoundsDesignSpatialAudioID_SoundsAudioTypeID"]);
+                    });
+                }
+            });
+
+            // Create dropdown items for sound audio types
+            soundsAudioTypes.forEach(type => {
+                const dropdownItem = document.createElement('li');
+                dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${type}</a>`;
+                soundsAudioTypeDropdown.appendChild(dropdownItem);
+            });
+
+            // Add event listener to dropdown items
+            soundsAudioTypeDropdown.addEventListener('click', function (event) {
+                selectedFilters.soundsAudioType = event.target.textContent;
+                applyFilters();
+            });
+        }
 
 
         // Function to apply filters
@@ -324,6 +366,8 @@
                 const immersionDegree = selectedFilters.immersionDegree;
                 const progressState = selectedFilters.progressState;
                 const displayDeviceType = selectedFilters.displayDeviceType;
+                const soundsAudioType = selectedFilters.soundsAudioType;
+
 
                 const projectImmersionType = project["Non Technical Description"]["NonTechnicalDescription_ImmersionTypeID"];
                 const projectImmersivityDegree = project["Non Technical Description"]["NonTechnicalDescription_ImmersivityDegreeID"];
@@ -331,13 +375,21 @@
 
                 const hardwareDisplayDevices = project["Hardware"]["Hardware_DisplayDevicesID"];
                 const projectDisplayDeviceTypes = hardwareDisplayDevices ? hardwareDisplayDevices.map(device => device["DisplayDevicesID_DeviceTypeID"]) : [];
+                const projectSoundsAudioTypes = [];
+                if (project["Production"] && project["Production"]["Production_SoundsDesignSpatialAudioID"]) {
+                    project["Production"]["Production_SoundsDesignSpatialAudioID"].forEach(sound => {
+                        projectSoundsAudioTypes.push(sound["SoundsDesignSpatialAudioID_SoundsAudioTypeID"]);
+                    });
+                }
 
                 const filterByImmersionType = immersionType === 'All Immersion Type' || projectImmersionType === immersionType;
                 const filterByImmersivityDegree = immersionDegree === 'All Immersivity Degrees' || projectImmersivityDegree === immersionDegree;
                 const filterByProgressState = progressState === 'All Progress States' || projectProgressState === progressState;
                 const filterByDisplayDeviceType = displayDeviceType === 'All Display Device Types' || projectDisplayDeviceTypes.includes(displayDeviceType);
+                const filterBySoundsAudioType = soundsAudioType === 'All Sound Audio Types' || projectSoundsAudioTypes.includes(soundsAudioType);
 
-                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType;
+
+                return filterByImmersionType && filterByImmersivityDegree && filterByProgressState && filterByDisplayDeviceType && filterBySoundsAudioType;
             });
             displayProjects(filteredProjects, currentPage);
             setupPagination(filteredProjects);
@@ -350,7 +402,7 @@
             selectedFiltersSection.innerHTML = ''; // Clear previous content
 
             Object.values(selectedFilters).forEach(filter => {
-                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types') {
+                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types' && filter !== 'All Sound Audio Types') {
                     const filterElement = document.createElement('div');
                     filterElement.classList.add('selected-filter');
                     filterElement.innerHTML = `${filter} <span onclick="removeFilter('${filter}')">&times;</span>`;
@@ -358,6 +410,8 @@
                 }
             });
         }
+
+
 
         // Function to remove a selected filter
         function removeFilter(filter) {
@@ -370,6 +424,8 @@
                 selectedFilters.progressState = 'All Progress States';
             } else if (filter === selectedFilters.displayDeviceType) {
                 selectedFilters.displayDeviceType = 'All Display Device Types';
+            } else if (filter === selectedFilters.soundsAudioType) {
+                selectedFilters.soundsAudioType = 'All Sound Audio Types';
             }
 
             applyFilters(); // Apply the updated filters

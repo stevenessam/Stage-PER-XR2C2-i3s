@@ -17,6 +17,19 @@
         .card-title {
             min-height: 50px;
         }
+
+        .selected-filter {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-right: 5px;
+            width: auto;
+        }
+
+        .selected-filter span {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -86,6 +99,10 @@
                 </div>
             </div>
 
+            <!-- Section to display selected filters -->
+            <div class="row mb-3" id="selectedFiltersSection">
+                <!-- Selected filters will be displayed here -->
+            </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="projects-container">
                 <!-- Project cards will be dynamically populated here -->
@@ -350,9 +367,39 @@
             });
             displayProjects(filteredProjects, currentPage);
             setupPagination(filteredProjects);
+            displaySelectedFilters();
         }
 
+        // Function to display selected filters
+        function displaySelectedFilters() {
+            const selectedFiltersSection = document.getElementById('selectedFiltersSection');
+            selectedFiltersSection.innerHTML = ''; // Clear previous content
 
+            Object.values(selectedFilters).forEach(filter => {
+                if (filter !== 'All Immersion Type' && filter !== 'All Immersivity Degrees' && filter !== 'All Progress States' && filter !== 'All Display Device Types') {
+                    const filterElement = document.createElement('div');
+                    filterElement.classList.add('selected-filter');
+                    filterElement.innerHTML = `${filter} <span onclick="removeFilter('${filter}')">&times;</span>`;
+                    selectedFiltersSection.appendChild(filterElement);
+                }
+            });
+        }
+
+        // Function to remove a selected filter
+        function removeFilter(filter) {
+            // Remove the filter from selectedFilters
+            if (filter === selectedFilters.immersionType) {
+                selectedFilters.immersionType = 'All Immersion Type';
+            } else if (filter === selectedFilters.immersionDegree) {
+                selectedFilters.immersionDegree = 'All Immersivity Degrees';
+            } else if (filter === selectedFilters.progressState) {
+                selectedFilters.progressState = 'All Progress States';
+            } else if (filter === selectedFilters.displayDeviceType) {
+                selectedFilters.displayDeviceType = 'All Display Device Types';
+            }
+
+            applyFilters(); // Apply the updated filters
+        }
 
         // Function to set up pagination
         function setupPagination(projectsData) {

@@ -30,6 +30,8 @@
 
 
 
+# Préparation de l'environnement
+
 ## Installation
 - Initialisez Node.js en exécutant la commande suivante :
     ``` 
@@ -47,7 +49,7 @@
     ```
 - Le serveur fonctionnera sur http://localhost:3000.
 
-## Soumission du Formulaire ✅
+# Soumission du Formulaire ✅
 - Accédez au formulaire à l'adresse http://localhost:3000/form.html.
 - Le code HTML et JavaScript génère dynamiquement un formulaire basé sur une structure `JSON` fournie.
 - Il crée des éléments de formulaire tels que des champs de saisie, des boutons radio et des boutons pour ajouter plus d'ensembles de champs en fonction des attributs spécifiés dans le JSON.
@@ -63,7 +65,8 @@
 - Chaque attribut est identifié par sa clé `AttributeID`, qui est utilisée comme clé pour l'objet JSON résultant lors de la soumission du formulaire.
 - Lorsque le formulaire est soumis, il collecte les données du formulaire et construit un objet représentant les données du formulaire au format JSON.
 
-## Stockage des Données ✅
+
+# Stockage des Données ✅
 - Les données du formulaire sont stockées dans le fichier `data/projects.json`.
 - Chaque formulaire soumis génère une nouvelle entrée dans le fichier JSON, contenant les données du formulaire.
 - Le serveur génère automatiquement un ID unique pour chaque projet soumis, assurant ainsi l'unicité des identifiants de projet, même après le redémarrage du serveur.
@@ -71,7 +74,7 @@
 - Assurez-vous que le fichier `projects.json` est correctement initialisé avec un tableau vide `[]` s'il est vide.
 
 
-## Page des Projets ✅
+# Page des Projets ✅
 - Mise en place d'une page pour afficher les projets soumis.
 - Utilisation d'`HTML`, `CSS`, `Bootstrap`, et `JavaScript` pour créer l'interface web.
 - Utilisation de `Bootstrap` pour la mise en page et le style des éléments.
@@ -82,7 +85,7 @@
 - Redirection vers une page d'information détaillée du projet lors du clic sur un projet.
 
 
-## Guide d'implémentation des Dropdowns et du Filtrage ✅
+# Guide d'implémentation des Dropdowns et du Filtrage ✅
 
 ## 1. Ajouter des Dropdowns dans le HTML
 

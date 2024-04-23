@@ -146,7 +146,21 @@ fetch('http://localhost:3000/data')
     .catch(error => console.error('Error fetching data:', error));
 ```
 
-## 3. Initialisation de l'objet selectedFilters : L'objet selectedFilters est initialisé avec les valeurs par défaut des filtres au chargement de la page.
+## 3. Affichage des Filtres Sélectionnés et Suppression
+```
+// Fonction pour afficher les filtres sélectionnés
+function displaySelectedFilters() {
+    // Afficher les filtres sélectionnés dans une section de l'interface utilisateur
+}
+```
+```
+// Fonction pour supprimer un filtre sélectionné
+function removeFilter(filter) {
+    // Supprimer le filtre sélectionné et mettre à jour les résultats
+}
+```
+
+## 4. Initialisation de l'objet selectedFilters : L'objet selectedFilters est initialisé avec les valeurs par défaut des filtres au chargement de la page.
 ```
 let selectedFilters = {
     immersionType: 'All Immersion Type',

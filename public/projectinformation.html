@@ -324,7 +324,6 @@
 
 
 
-
         // Function to retrieve and display attributes inside a category
         function displayCategoryAttributes(categoryName, attributes) {
             const accordion = document.getElementById('accordionPanelsStayOpenExample');
@@ -356,7 +355,10 @@
             const attributeList = document.createElement('ul');
             attributes.forEach(attribute => {
                 const attributeListItem = document.createElement('li');
-                if (Array.isArray(attribute.value)) {
+                if (typeof attribute.value === 'boolean') {
+                    // If the value is boolean, display Yes or No
+                    attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value ? 'Yes' : 'No'}`;
+                } else if (Array.isArray(attribute.value)) {
                     // If the value is an array, handle each object
                     const subList = document.createElement('ul');
                     attribute.value.forEach(obj => {
@@ -368,7 +370,7 @@
                     attributeListItem.innerHTML = `<strong>${attribute.key}</strong>:<br>`;
                     attributeListItem.appendChild(subList);
                 } else {
-                    // If the value is not an array, display it directly
+                    // If the value is not a boolean or an array, display it directly
                     attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
                 }
                 attributeList.appendChild(attributeListItem);
@@ -384,7 +386,6 @@
             // Append accordion item to accordion
             accordion.appendChild(accordionItem);
         }
-
 
 
         // Function to retrieve and display all categories for a specific project ID

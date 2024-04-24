@@ -93,9 +93,7 @@
 
                     <div class="portfolio-description">
                         <h2>Description</h2>
-                        <p>
-                            description text
-                        </p>
+                        <p id="projectGoal"> </p>
                     </div>
 
 
@@ -177,6 +175,7 @@
                     if (project) {
                         // Call functions to update the page with project data
                         updateBreadcrumbs(project["Non Technical Description"]["NonTechnicalDescription_NameID"]);
+                        updateProjectDescription(project["Non Technical Description"]["NonTechnicalDescription_GoalID"]);
                         fetchProjectImages(projectId);
                         fetchProjectVideos(projectId);
                     } else {
@@ -189,6 +188,11 @@
         // Function to update the breadcrumbs section with the project name
         function updateBreadcrumbs(projectName) {
             document.getElementById('projectName').innerText = projectName;
+        }
+
+        // Function to update the project description section with the project goal
+        function updateProjectDescription(projectGoal) {
+            document.getElementById('projectGoal').innerText = projectGoal;
         }
 
         // Function to retrieve and display project images

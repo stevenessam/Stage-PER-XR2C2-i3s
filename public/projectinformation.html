@@ -163,6 +163,13 @@
                         fetchProjectImages(projectId);
                         fetchProjectVideos(projectId);
 
+                        // Display attributes for "Non Technical Description" category
+                        const nonTechDescAttributes = Object.entries(project["Non Technical Description"])
+                            .map(([key, value]) => ({ key, value }));
+
+                        const excludedAttributesNonTechDescAttributes = ['NonTechnicalDescription_ImageFilesID', 'NonTechnicalDescription_VideoFilesID', 'NonTechnicalDescription_NameID', 'NonTechnicalDescription_GoalID']; // Add attributes to exclude here
+
+                        displayNonTechDescriptionAttributes(nonTechDescAttributes, excludedAttributesNonTechDescAttributes);
 
 
                         // Define excluded attributes for each category
@@ -282,6 +289,21 @@
                     }
                 })
                 .catch(error => console.error('Error fetching project videos:', error));
+        }
+
+
+        // Function to display attributes and their values inside the "Non Technical Description" category
+        function displayNonTechDescriptionAttributes(attributes, excludedAttributes) {
+            const nonTechDescInfo = document.querySelector('.portfolio-info ul');
+            nonTechDescInfo.innerHTML = ''; // Clear existing content
+            attributes.forEach(attribute => {
+                // Check if the attribute should be excluded
+                if (!excludedAttributes.includes(attribute.key)) {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                    nonTechDescInfo.appendChild(listItem);
+                }
+            });
         }
 
 

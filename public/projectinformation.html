@@ -99,35 +99,15 @@
                     </div>
 
 
-                    <h2>Title</h2>
+                    <h2>Categories</h2>
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-${CategoryName1}" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-${CategoryName1}">
-                                    Gategory name 1
-                                </button>
+                                <!-- Category name will be dynamically added here -->
                             </h2>
-                            <div id="panelsStayOpen-${CategoryName1}" class="accordion-collapse collapse">
+                            <div id="panelsStayOpen-${//CategoryName1}" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    <ul>
-                                        <li><strong>Attribute Name</strong>: Attribute Value</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-${CategoryName2}" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-${CategoryName2}">
-                                    Gategory name 2
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-${CategoryName2}" class="accordion-collapse collapse">
-                                <div class="accordion-body">
-                                    <li><strong>Attribute Name</strong>: Attribute Value</li>
+                                    <!-- Category attributes will be dynamically added here -->
                                 </div>
                             </div>
                         </div>
@@ -180,6 +160,8 @@
                         updateProjectDescription(project["Non Technical Description"]["NonTechnicalDescription_GoalID"]);
                         fetchProjectImages(projectId);
                         fetchProjectVideos(projectId);
+                        displayAllCategories(projectId, ['id']);
+
                     } else {
                         throw new Error('Project not found');
                     }
@@ -289,6 +271,80 @@
                 })
                 .catch(error => console.error('Error fetching project videos:', error));
         }
+
+
+        // Function to retrieve and display attributes inside a category
+        function displayCategoryAttributes(categoryName, attributes) {
+            const accordion = document.getElementById('accordionPanelsStayOpenExample');
+
+            // Create accordion item for the category
+            const accordionItem = document.createElement('div');
+            accordionItem.classList.add('accordion-item');
+
+            // Create accordion header
+            const accordionHeader = document.createElement('h2');
+            accordionHeader.classList.add('accordion-header');
+            accordionHeader.innerHTML = `
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-${categoryName}" aria-expanded="false"
+            aria-controls="panelsStayOpen-${categoryName}">
+            ${categoryName}
+        </button>
+    `;
+            accordionItem.appendChild(accordionHeader);
+
+            // Create accordion body
+            const accordionBody = document.createElement('div');
+            accordionBody.id = `panelsStayOpen-${categoryName}`;
+            accordionBody.classList.add('accordion-collapse', 'collapse');
+            const accordionBodyContent = document.createElement('div');
+            accordionBodyContent.classList.add('accordion-body');
+
+            // Create list of attributes
+            const attributeList = document.createElement('ul');
+            attributes.forEach(attribute => {
+                const attributeListItem = document.createElement('li');
+                attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                attributeList.appendChild(attributeListItem);
+            });
+
+            // Append attribute list to accordion body content
+            accordionBodyContent.appendChild(attributeList);
+            accordionBody.appendChild(accordionBodyContent);
+
+            // Append accordion body to accordion item
+            accordionItem.appendChild(accordionBody);
+
+            // Append accordion item to accordion
+            accordion.appendChild(accordionItem);
+        }
+
+        // Function to retrieve and display all categories for a specific project ID
+        function displayAllCategories(projectId, excludedCategories = []) {
+            fetch('projects')
+                .then(response => response.json())
+                .then(data => {
+                    const project = data.find(project => project.id == projectId);
+                    if (!project) {
+                        throw new Error('Project not found');
+                    }
+
+                    // Get all category names
+                    const categoryNames = Object.keys(project);
+
+                    // Filter out excluded categories
+                    const filteredCategoryNames = categoryNames.filter(categoryName => !excludedCategories.includes(categoryName));
+
+                    // Display attributes for each category
+                    filteredCategoryNames.forEach(categoryName => {
+                        const category = project[categoryName];
+                        const attributes = Object.entries(category).map(([key, value]) => ({ key, value }));
+                        displayCategoryAttributes(categoryName, attributes);
+                    });
+                })
+                .catch(error => console.error('Error fetching categories:', error));
+        }
+
 
         // Get the project ID from the URL parameters
         const urlParams = new URLSearchParams(window.location.search);

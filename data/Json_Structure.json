@@ -595,7 +595,7 @@
                 "description": "The attribute describes the measures and practices implemented to maintain hygiene and cleanliness within the immersive project environment, particularly regarding the equipment used by participants."
             }
         ],
-        "Experience_Waiting_Line": [
+        "Experience Waiting Line": [
             {
                 "label": "Waiting Time",
                 "AttributeID" : "ExperienceWaitingLine_WaitingTimeID",
@@ -714,7 +714,7 @@
                 "description": "The attribute encompasses any additional details or information related to the documentation not covered by specific attributes."
             }
         ],
-        "Experience_Has_Evaluation": [
+        "Experience Evaluation": [
             {
                 "label": "Questionnaires",
                 "AttributeID" : "ExperienceHasEvaluation_QuestionnairesID",

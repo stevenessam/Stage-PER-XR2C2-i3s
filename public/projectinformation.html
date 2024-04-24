@@ -70,11 +70,9 @@
         <!-- ======= Portfolio Details Section ======= -->
         <section id="portfolio-details" class="portfolio-details">
             <div class="container">
-
-
                 <div class="row gy-4">
-
                     <div class="col-lg-8">
+                        <!-- Portfolio images slider -->
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center" id="imageSlider">
                                 <!-- Images will be dynamically added here -->
@@ -82,31 +80,34 @@
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-
                     <div class="col-lg-4">
+                        <!-- Non Technical Description -->
                         <div class="portfolio-info">
                             <h3>Non Technical Description</h3>
                             <ul>
-                                <li><strong>Attribute key</strong>: value</li>
+                                <!-- Non Technical Description attributes will be dynamically added here -->
                             </ul>
                         </div>
                     </div>
-
-                    <div class="portfolio-description">
-                        <h2>Description</h2>
-                        <p id="projectGoal">
-                            <!-- Project goal will be dynamically added here -->
-                        </p>
+                    <div class="col-lg-12">
+                        <!-- Description -->
+                        <div class="portfolio-description">
+                            <h2>Description</h2>
+                            <p id="projectGoal">
+                                <!-- Project goal will be dynamically added here -->
+                            </p>
+                        </div>
                     </div>
-
-
-                    <h2>Categories</h2>
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
-                        <!-- Categories will be dynamically added here -->
+                    <!-- Categories accordion -->
+                    <div class="col-lg-12">
+                        <h2>Categories</h2>
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <!-- Categories will be dynamically added here -->
+                        </div>
                     </div>
-
-                    <h2 class="mt-5">Video</h2>
-                    <div class="col">
+                    <!-- Video section -->
+                    <div class="col-lg-12">
+                        <h2 class="mt-5">Video</h2>
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center" id="videoSlider">
                                 <!-- Videos will be dynamically added here -->
@@ -115,10 +116,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
+
 
     </main><!-- End #main -->
 
@@ -298,14 +298,31 @@
             const nonTechDescInfo = document.querySelector('.portfolio-info ul');
             nonTechDescInfo.innerHTML = ''; // Clear existing content
             attributes.forEach(attribute => {
-                // Check if the attribute should be excluded
+                // Check if the attribute key should be excluded
                 if (!excludedAttributes.includes(attribute.key)) {
                     const listItem = document.createElement('li');
-                    listItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                    if (Array.isArray(attribute.value)) {
+                        // If the value is an array, handle each object
+                        const subList = document.createElement('ul');
+                        attribute.value.forEach(obj => {
+                            const subListItem = document.createElement('li');
+                            const objKeyValues = Object.entries(obj).map(([key, value]) => `<strong>${key}</strong>: ${value}`).join(', ');
+                            subListItem.innerHTML = `${objKeyValues}`;
+                            subList.appendChild(subListItem);
+                        });
+                        listItem.innerHTML = `<strong>${attribute.key}</strong>:`;
+                        listItem.appendChild(subList);
+                    } else {
+                        // If the value is not an array, display it directly
+                        listItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                    }
                     nonTechDescInfo.appendChild(listItem);
                 }
             });
         }
+
+
+
 
 
         // Function to retrieve and display attributes inside a category
@@ -339,7 +356,21 @@
             const attributeList = document.createElement('ul');
             attributes.forEach(attribute => {
                 const attributeListItem = document.createElement('li');
-                attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                if (Array.isArray(attribute.value)) {
+                    // If the value is an array, handle each object
+                    const subList = document.createElement('ul');
+                    attribute.value.forEach(obj => {
+                        const subListItem = document.createElement('li');
+                        const pairValues = Object.entries(obj).map(([key, value]) => `<strong>${key}</strong>: ${value}`).join('<br>');
+                        subListItem.innerHTML = `${pairValues}`;
+                        subList.appendChild(subListItem);
+                    });
+                    attributeListItem.innerHTML = `<strong>${attribute.key}</strong>:<br>`;
+                    attributeListItem.appendChild(subList);
+                } else {
+                    // If the value is not an array, display it directly
+                    attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
+                }
                 attributeList.appendChild(attributeListItem);
             });
 
@@ -353,6 +384,8 @@
             // Append accordion item to accordion
             accordion.appendChild(accordionItem);
         }
+
+
 
         // Function to retrieve and display all categories for a specific project ID
         function displayAllCategories(projectId, excludedAttributes = {}) {

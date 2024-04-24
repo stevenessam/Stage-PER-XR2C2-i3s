@@ -41,7 +41,7 @@
                 "children": [
                     [
                         {
-                            "label": "Personne_Information",
+                            "label": "Personne Information",
                             "AttributeID" : "PersonneResponsableContactID_PersonneInformationID",
                             "type": "String"
                         }
@@ -169,7 +169,7 @@
                 "children": [
                     [
                         {
-                            "label": "Device_Type",
+                            "label": "Device Type",
                             "AttributeID" : "DisplayDevicesID_DeviceTypeID",
                             "type": "option",
                             "options": ["VR headset", "Oculus Quest 2","HTC Vive Eye Pro", "Headphones","Phone", "Pending"],
@@ -200,7 +200,7 @@
                 "description": "The attribute encompasses devices or tools used to gather user feedback within the project, facilitating interaction and engagement."
             },
             {
-                "label": "Output_Devices",
+                "label": "Output Devices",
                 "AttributeID" : "Hardware_OutputDevicesID",
                 "type": "option",
                 "options": ["Headphones", "Microphones","Pending"],
@@ -214,7 +214,7 @@
                 "description": "The attribute indicates the use or absence of physical cables for setting up the experience, providing an overview of the extent to which wired connections are involved."
             },
             {
-                "label": "Audio_Equipment",
+                "label": "Audio Equipment",
                 "AttributeID" : "Hardware_AudioEquipmentID",
                 "type": "list",
                 "description": "The attribute provides an overview of tools and devices dedicated to managing and delivering audio components within the project.",
@@ -621,7 +621,7 @@
                 "description": "The attribute specifies the maximum capacity or limit on the number of people allowed in the queue for the immersive experience."
             },
             {
-                "label": "Other_Experience Waiting Line Information",
+                "label": "Other Experience Waiting Line Information",
                 "AttributeID" : "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID",
                 "type": "String",
                 "description": "The attribute encompasses additional details or considerations related to configuring and managing the queue for the immersive experience."

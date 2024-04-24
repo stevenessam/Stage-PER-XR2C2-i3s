@@ -151,7 +151,16 @@
                         updateProjectDescription(project["Non Technical Description"]["NonTechnicalDescription_GoalID"]);
                         fetchProjectImages(projectId);
                         fetchProjectVideos(projectId);
-                        displayAllCategories(projectId, ['id']);
+
+
+
+                        // Define excluded attributes for each category
+                        const excludedAttributes = {
+                            'id': 'all', // Exclude entire CategoryName1
+                            'Non Technical Description': ['NonTechnicalDescription_ImageFilesID', 'NonTechnicalDescription_VideoFilesID', 'NonTechnicalDescription_PersonneResponsableContactID'] // Exclude AttributeToExclude3 from CategoryName2
+                        };
+                        displayAllCategories(projectId, excludedAttributes);
+
 
                     } else {
                         throw new Error('Project not found');
@@ -311,7 +320,7 @@
         }
 
         // Function to retrieve and display all categories for a specific project ID
-        function displayAllCategories(projectId, excludedCategories = []) {
+        function displayAllCategories(projectId, excludedAttributes = {}) {
             fetch('projects')
                 .then(response => response.json())
                 .then(data => {
@@ -323,14 +332,26 @@
                     // Get all category names
                     const categoryNames = Object.keys(project);
 
-                    // Filter out excluded categories
-                    const filteredCategoryNames = categoryNames.filter(categoryName => !excludedCategories.includes(categoryName));
-
                     // Display attributes for each category
-                    filteredCategoryNames.forEach(categoryName => {
-                        const category = project[categoryName];
-                        const attributes = Object.entries(category).map(([key, value]) => ({ key, value }));
-                        displayCategoryAttributes(categoryName, attributes);
+                    categoryNames.forEach(categoryName => {
+                        if (excludedAttributes[categoryName]) {
+                            if (excludedAttributes[categoryName] === 'all') {
+                                // Exclude entire category
+                                return;
+                            }
+                            // Exclude specific attributes
+                            const category = project[categoryName];
+                            const attributes = Object.entries(category)
+                                .filter(([key]) => !excludedAttributes[categoryName].includes(key))
+                                .map(([key, value]) => ({ key, value }));
+                            displayCategoryAttributes(categoryName, attributes);
+                        } else {
+                            // Display all attributes by default
+                            const category = project[categoryName];
+                            const attributes = Object.entries(category)
+                                .map(([key, value]) => ({ key, value }));
+                            displayCategoryAttributes(categoryName, attributes);
+                        }
                     });
                 })
                 .catch(error => console.error('Error fetching categories:', error));

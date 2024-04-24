@@ -156,8 +156,9 @@
 
                         // Define excluded attributes for each category
                         const excludedAttributes = {
-                            'id': 'all', // Exclude entire CategoryName1
-                            'Non Technical Description': ['NonTechnicalDescription_ImageFilesID', 'NonTechnicalDescription_VideoFilesID', 'NonTechnicalDescription_PersonneResponsableContactID'] // Exclude AttributeToExclude3 from CategoryName2
+                            'id': 'all', // Exclude entire Category
+                            'Non Technical Description': 'all'
+                            // 'Interview': ['attributes1','attributes2'] // Exclude AttributeToExclude3 from Category
                         };
                         displayAllCategories(projectId, excludedAttributes);
 

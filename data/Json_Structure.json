@@ -415,7 +415,7 @@
                 "description": "Interview with the creator of the experienceThis attribute encompasses any additional information or detail regarding the production phase of the immersive project that may not fit into specific attribute categories."
             }
         ],
-        "Target_Users": [
+        "Target Users": [
             {
                 "label": "Disability Accessibility",
                 "AttributeID" : "TargetUsers_DisabilityAccessibilityID",

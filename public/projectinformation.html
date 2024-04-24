@@ -361,64 +361,99 @@
                 .catch(error => console.error('Error fetching categories:', error));
         }
 
-        // Function to display attributes inside a category
+        // Function to retrieve and display attributes inside a category
         function displayCategoryAttributes(categoryName, attributes) {
             const accordion = document.getElementById('accordionPanelsStayOpenExample');
 
-            // Create accordion item for the category
-            const accordionItem = document.createElement('div');
-            accordionItem.classList.add('accordion-item');
+            // Load the Json_Structure.json file
+            fetch('Json_Structure.json')
+                .then(response => response.json())
+                .then(structure => {
+                    // Map AttributeID to label
+                    const attributeMap = {};
 
-            // Create accordion header
-            const accordionHeader = document.createElement('h2');
-            accordionHeader.classList.add('accordion-header');
-            accordionHeader.innerHTML = `
+                    // Recursive function to traverse the attribute structure and build the mapping
+                    const buildAttributeMap = (attributes) => {
+                        attributes.forEach(attribute => {
+                            if (attribute.AttributeID && attribute.label) {
+                                attributeMap[attribute.AttributeID] = attribute.label;
+                            }
+                            if (attribute.children) {
+                                attribute.children.forEach(child => buildAttributeMap(child));
+                            }
+                        });
+                    };
+
+                    // Build the attribute map
+                    structure.forEach(category => {
+                        const categoryAttributes = category[categoryName];
+                        if (categoryAttributes) {
+                            buildAttributeMap(categoryAttributes);
+                        }
+                    });
+
+                    // Create accordion item for the category
+                    const accordionItem = document.createElement('div');
+                    accordionItem.classList.add('accordion-item');
+
+                    // Create accordion header
+                    const accordionHeader = document.createElement('h2');
+                    accordionHeader.classList.add('accordion-header');
+                    accordionHeader.innerHTML = `
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-${categoryName.replace(/ /g, '')}" aria-expanded="false"
             aria-controls="panelsStayOpen-${categoryName.replace(/ /g, '')}">
             ${categoryName}
         </button>
     `;
-            accordionItem.appendChild(accordionHeader);
+                    accordionItem.appendChild(accordionHeader);
 
-            // Create accordion body
-            const accordionBody = document.createElement('div');
-            accordionBody.id = `panelsStayOpen-${categoryName.replace(/ /g, '')}`;
-            accordionBody.classList.add('accordion-collapse', 'collapse');
-            const accordionBodyContent = document.createElement('div');
-            accordionBodyContent.classList.add('accordion-body');
+                    // Create accordion body
+                    const accordionBody = document.createElement('div');
+                    accordionBody.id = `panelsStayOpen-${categoryName.replace(/ /g, '')}`;
+                    accordionBody.classList.add('accordion-collapse', 'collapse');
+                    const accordionBodyContent = document.createElement('div');
+                    accordionBodyContent.classList.add('accordion-body');
 
-            // Create list of attributes
-            const attributeList = document.createElement('ul');
-            attributes.forEach(attribute => {
-                const attributeListItem = document.createElement('li');
-                if (Array.isArray(attribute.value)) {
-                    // If the value is an array, handle each object
-                    const subList = document.createElement('ul');
-                    attribute.value.forEach(obj => {
-                        const subListItem = document.createElement('li');
-                        const pairValues = Object.entries(obj).map(([key, value]) => `<strong>${key}</strong>: ${value}`).join('<br>');
-                        subListItem.innerHTML = `${pairValues}`;
-                        subList.appendChild(subListItem);
+                    // Create list of attributes
+                    const attributeList = document.createElement('ul');
+                    attributes.forEach(attribute => {
+                        const attributeListItem = document.createElement('li');
+                        if (Array.isArray(attribute.value)) {
+                            // If the value is an array, handle each object
+                            const subList = document.createElement('ul');
+                            attribute.value.forEach(obj => {
+                                const subListItem = document.createElement('li');
+                                const pairValues = Object.entries(obj).map(([key, value]) => {
+                                    if (attributeMap[key]) {
+                                        return `<strong>${attributeMap[key]}</strong>: ${value}`;
+                                    } else {
+                                        return `<strong>${key}</strong>: ${value}`;
+                                    }
+                                }).join('<br>');
+                                subListItem.innerHTML = `${pairValues}`;
+                                subList.appendChild(subListItem);
+                            });
+                            attributeListItem.innerHTML = `<strong>${attributeMap[attribute.key]}</strong>:<br>`;
+                            attributeListItem.appendChild(subList);
+                        } else {
+                            // If the value is not an array, display it directly
+                            attributeListItem.innerHTML = `<strong>${attributeMap[attribute.key]}</strong>: ${attribute.value}`;
+                        }
+                        attributeList.appendChild(attributeListItem);
                     });
-                    attributeListItem.innerHTML = `<strong>${attribute.key}</strong>:<br>`;
-                    attributeListItem.appendChild(subList);
-                } else {
-                    // If the value is not an array, display it directly
-                    attributeListItem.innerHTML = `<strong>${attribute.key}</strong>: ${attribute.value}`;
-                }
-                attributeList.appendChild(attributeListItem);
-            });
 
-            // Append attribute list to accordion body content
-            accordionBodyContent.appendChild(attributeList);
-            accordionBody.appendChild(accordionBodyContent);
+                    // Append attribute list to accordion body content
+                    accordionBodyContent.appendChild(attributeList);
+                    accordionBody.appendChild(accordionBodyContent);
 
-            // Append accordion body to accordion item
-            accordionItem.appendChild(accordionBody);
+                    // Append accordion body to accordion item
+                    accordionItem.appendChild(accordionBody);
 
-            // Append accordion item to accordion
-            accordion.appendChild(accordionItem);
+                    // Append accordion item to accordion
+                    accordion.appendChild(accordionItem);
+                })
+                .catch(error => console.error('Error fetching Json_Structure:', error));
         }
 
 

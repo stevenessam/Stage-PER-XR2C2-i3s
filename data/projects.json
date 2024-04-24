@@ -241,7 +241,13 @@
           ]
         }
       ],
-      "NonTechnicalDescription_VideoFilesID": []
+      "NonTechnicalDescription_VideoFilesID": [
+        {
+          "VideoFilesID_VideoPathID": [
+            "mediaFiles/Videos/vid1.mp4"
+          ]
+        }
+      ]
     },
     "Hardware": {
       "Hardware_ComputerDependentID": false,
@@ -399,8 +405,20 @@
       "NonTechnicalDescription_UniqueORRedoableID": "Unique",
       "NonTechnicalDescription_TypicalExperienceID": "",
       "NonTechnicalDescription_ProgressStateID": "Completed",
-      "NonTechnicalDescription_ImageFilesID": [],
-      "NonTechnicalDescription_VideoFilesID": []
+      "NonTechnicalDescription_ImageFilesID": [
+        {
+          "ImageFilesID_ImagePathID": [
+            "mediaFiles/Images/Img (3).jpg"
+          ]
+        }
+      ],
+      "NonTechnicalDescription_VideoFilesID": [
+        {
+          "VideoFilesID_VideoPathID": [
+            "mediaFiles/Videos/vid2.mp4"
+          ]
+        }
+      ]
     },
     "Hardware": {
       "Hardware_ComputerDependentID": true,

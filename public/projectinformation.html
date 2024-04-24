@@ -61,11 +61,9 @@
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
             <div class="container">
-
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Project Name</h2>
+                    <h2 id="projectName"></h2>
                 </div>
-
             </div>
         </section><!-- End Breadcrumbs -->
 
@@ -77,14 +75,8 @@
 
                     <div class="col-lg-6">
                         <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-
-                                <div class="swiper-slide">
-                                    <img src="/mediaFiles/Images/Img (1).jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/mediaFiles/Images/Img (2).jpg" alt="">
-                                </div>
+                            <div class="swiper-wrapper align-items-center" id="imageSlider">
+                                <!-- Images will be dynamically added here -->
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -92,18 +84,8 @@
 
                     <div class="col-lg-6">
                         <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="swiper-slide">
-                                    <video controls preload="auto" loop muted>
-                                        <source src="/mediaFiles/Videos/vid1.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                                <div class="swiper-slide">
-                                    <video controls preload="auto" loop muted>
-                                        <source src="/mediaFiles/Videos/vid1.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-
+                            <div class="swiper-wrapper align-items-center" id="videoSlider">
+                                <!-- Videos will be dynamically added here -->
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -117,7 +99,7 @@
                     </div>
 
 
-                    <h2>This is an example of portfolio detail</h2>
+                    <h2>Title</h2>
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -153,7 +135,7 @@
                 </div>
 
             </div>
-        </section><!-- End Portfolio Details Section -->
+        </section>
 
     </main><!-- End #main -->
 
@@ -182,6 +164,133 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+
+
+    <script>
+
+        // Function to retrieve various project data from projects.json
+        function fetchProjectData(projectId) {
+            return fetch('projects')
+                .then(response => response.json())
+                .then(data => {
+                    const project = data.find(project => project.id == projectId);
+                    if (project) {
+                        // Call functions to update the page with project data
+                        updateBreadcrumbs(project["Non Technical Description"]["NonTechnicalDescription_NameID"]);
+                        fetchProjectImages(projectId);
+                        fetchProjectVideos(projectId);
+                    } else {
+                        throw new Error('Project not found');
+                    }
+                })
+                .catch(error => console.error('Error fetching project data:', error));
+        }
+
+        // Function to update the breadcrumbs section with the project name
+        function updateBreadcrumbs(projectName) {
+            document.getElementById('projectName').innerText = projectName;
+        }
+
+        // Function to retrieve and display project images
+        function fetchProjectImages(projectId) {
+            return fetch('projects')
+                .then(response => response.json())
+                .then(data => {
+                    const project = data.find(project => project.id == projectId);
+                    if (!project) {
+                        throw new Error('Project not found');
+                    }
+                    const nonTechDesc = project['Non Technical Description'];
+                    if (nonTechDesc && nonTechDesc['NonTechnicalDescription_ImageFilesID']) {
+                        const imageFiles = nonTechDesc['NonTechnicalDescription_ImageFilesID'];
+                        const swiperWrapper = document.querySelector('.portfolio-details-slider .swiper-wrapper');
+                        swiperWrapper.innerHTML = ''; // Clear existing content
+                        if (imageFiles && imageFiles.length > 0 && imageFiles[0]['ImageFilesID_ImagePathID']) {
+                            imageFiles[0]['ImageFilesID_ImagePathID'].forEach(imagePath => {
+                                const swiperSlide = document.createElement('div');
+                                swiperSlide.classList.add('swiper-slide');
+                                const img = document.createElement('img');
+                                img.src = imagePath || '/mediaFiles/Images/placeholder.jpg'; // Use placeholder if imagePath is not available
+                                img.alt = ''; // You can set the alt text if needed
+                                swiperSlide.appendChild(img);
+                                swiperWrapper.appendChild(swiperSlide);
+                            });
+                        } else {
+                            // If no image paths are found, display placeholder image
+                            const swiperSlide = document.createElement('div');
+                            swiperSlide.classList.add('swiper-slide');
+                            const img = document.createElement('img');
+                            img.src = '/mediaFiles/Images/placeholder.jpg';
+                            img.alt = ''; // You can set the alt text if needed
+                            swiperSlide.appendChild(img);
+                            swiperWrapper.appendChild(swiperSlide);
+                        }
+                    } else {
+                        throw new Error('No image files found');
+                    }
+                })
+                .catch(error => console.error('Error fetching project images:', error));
+        }
+
+        // Function to retrieve and display project videos
+        function fetchProjectVideos(projectId) {
+            return fetch('projects')
+                .then(response => response.json())
+                .then(data => {
+                    const project = data.find(project => project.id == projectId);
+                    if (!project) {
+                        throw new Error('Project not found');
+                    }
+                    const nonTechDesc = project['Non Technical Description'];
+                    if (nonTechDesc && nonTechDesc['NonTechnicalDescription_VideoFilesID']) {
+                        const videoFiles = nonTechDesc['NonTechnicalDescription_VideoFilesID'];
+                        const videoSlider = document.getElementById('videoSlider');
+                        videoSlider.innerHTML = ''; // Clear existing content
+                        if (videoFiles && videoFiles.length > 0 && videoFiles[0]['VideoFilesID_VideoPathID']) {
+                            videoFiles[0]['VideoFilesID_VideoPathID'].forEach(videoPath => {
+                                const videoSlide = document.createElement('div');
+                                videoSlide.classList.add('swiper-slide');
+                                const video = document.createElement('video');
+                                video.controls = true;
+                                video.preload = 'auto';
+                                video.loop = true;
+                                video.muted = true;
+                                const source = document.createElement('source');
+                                source.src = videoPath;
+                                video.appendChild(source);
+                                videoSlide.appendChild(video);
+                                videoSlider.appendChild(videoSlide);
+                            });
+                        } else {
+                            // If no video paths are found, display placeholder video
+                            const videoSlide = document.createElement('div');
+                            videoSlide.classList.add('swiper-slide');
+                            const video = document.createElement('video');
+                            video.controls = true;
+                            video.preload = 'auto';
+                            video.loop = true;
+                            video.muted = true;
+                            const source = document.createElement('source');
+                            source.src = '/mediaFiles/Videos/placeholder.mp4'; // Placeholder video path
+                            source.type = 'video/mp4';
+                            video.appendChild(source);
+                            videoSlide.appendChild(video);
+                            videoSlider.appendChild(videoSlide);
+                        }
+                    } else {
+                        throw new Error('No video files found');
+                    }
+                })
+                .catch(error => console.error('Error fetching project videos:', error));
+        }
+
+        // Get the project ID from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+
+        // Fetch the project data
+        fetchProjectData(projectId);
+    </script>
     <!-- Vendor JS Files -->
     <script src="styles/bootstrapStyle/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="styles/bootstrapStyle/vendor/aos/aos.js"></script>

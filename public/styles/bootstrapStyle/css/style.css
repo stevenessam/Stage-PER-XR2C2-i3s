@@ -1527,3 +1527,31 @@ section {
 .modal-arrow.right {
   right: 20px;
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+  height: 100%;
+  width: 50px;
+  background: transparent;
+  border: none;
+  z-index: 999;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.carousel-control-prev {
+  left: 0;
+  height: 90%;
+}
+
+.carousel-control-next {
+  right: 0;
+  height: 90%;
+}

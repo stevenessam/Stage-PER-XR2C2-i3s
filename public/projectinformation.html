@@ -117,11 +117,20 @@
                     <!-- Video section -->
                     <div class="col-lg-12 mt-5">
                         <h2 class="titlesStyle">Video</h2>
-                        <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center" id="videoSlider">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
                                 <!-- Videos will be dynamically added here -->
                             </div>
-                            <div class="swiper-pagination"></div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -345,13 +354,15 @@
                     const nonTechDesc = project['Non Technical Description'];
                     if (nonTechDesc && nonTechDesc['NonTechnicalDescription_VideoFilesID']) {
                         const videoFiles = nonTechDesc['NonTechnicalDescription_VideoFilesID'];
-                        const videoSlider = document.getElementById('videoSlider');
-                        videoSlider.innerHTML = ''; // Clear existing content
+                        const videoCarousel = document.getElementById('carouselExample');
+                        const carouselInner = videoCarousel.querySelector('.carousel-inner');
+                        carouselInner.innerHTML = ''; // Clear existing content
                         if (videoFiles && videoFiles.length > 0 && videoFiles[0]['VideoFilesID_VideoPathID']) {
                             videoFiles[0]['VideoFilesID_VideoPathID'].forEach(videoPath => {
-                                const videoSlide = document.createElement('div');
-                                videoSlide.classList.add('swiper-slide');
+                                const videoItem = document.createElement('div');
+                                videoItem.classList.add('carousel-item');
                                 const video = document.createElement('video');
+                                video.classList.add('d-block', 'w-100');
                                 video.controls = true;
                                 video.preload = 'auto';
                                 video.loop = true;
@@ -359,14 +370,16 @@
                                 const source = document.createElement('source');
                                 source.src = videoPath;
                                 video.appendChild(source);
-                                videoSlide.appendChild(video);
-                                videoSlider.appendChild(videoSlide);
+                                videoItem.appendChild(video);
+                                carouselInner.appendChild(videoItem);
                             });
+                            carouselInner.firstChild.classList.add('active'); // Set the first video as active
                         } else {
                             // If no video paths are found, display placeholder video
-                            const videoSlide = document.createElement('div');
-                            videoSlide.classList.add('swiper-slide');
+                            const videoItem = document.createElement('div');
+                            videoItem.classList.add('carousel-item', 'active');
                             const video = document.createElement('video');
+                            video.classList.add('d-block', 'w-100');
                             video.controls = true;
                             video.preload = 'auto';
                             video.loop = true;
@@ -375,8 +388,8 @@
                             source.src = '/mediaFiles/Videos/placeholder.mp4'; // Placeholder video path
                             source.type = 'video/mp4';
                             video.appendChild(source);
-                            videoSlide.appendChild(video);
-                            videoSlider.appendChild(videoSlide);
+                            videoItem.appendChild(video);
+                            carouselInner.appendChild(videoItem);
                         }
                     } else {
                         throw new Error('No video files found');

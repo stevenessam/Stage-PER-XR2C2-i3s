@@ -162,7 +162,7 @@
       "ExperienceWaitingLine_WaitingTimeID": "No",
       "ExperienceWaitingLine_VisibilityID": false,
       "ExperienceWaitingLine_AudibilityID": false,
-      "ExperienceWaitingLine_CapacityID": 0,
+      "ExperienceWaitingLine_CapacityID": null,
       "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID": ""
     },
     "Privacy": {

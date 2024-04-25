@@ -30,8 +30,8 @@
       "NonTechnicalDescription_ImageFilesID": [
         {
           "ImageFilesID_ImagePathID": [
-            "mediaFiles/Images/Img (1).jpg",
-            "mediaFiles/Images/Img (2).jpg"
+            "mediaFiles/Images/projectimg (8).jpg",
+            "mediaFiles/Images/projectimg (4).jpg"
           ]
         }
       ],
@@ -190,6 +190,520 @@
       "ExperienceHasEvaluation_QuantitativeMeasurementsID": "Pending",
       "ExperienceHasEvaluation_SampleID": "20-30; pending",
       "ExperienceHasEvaluation_DevicesID": "Pending"
+    },
+    "Project Visibility": {
+      "ProjectVisibility_VisibilityID": "Public"
+    }
+  },
+  {
+    "id": 2,
+    "Interview": {
+      "Interview_DateID": "2023-06-30",
+      "Interview_PersonInterviewedID": "Florent Robert",
+      "Interview_FormatID": "Zoom",
+      "Interview_DurationID": "1h15"
+    },
+    "Non Technical Description": {
+      "NonTechnicalDescription_NameID": "TASTE 3D",
+      "NonTechnicalDescription_ResponsiblePersonContactID": [
+        {
+          "ResponsiblePersonContactID_PersonneInformationID": "marco.winckler@univ-cotedazur.fr"
+        },
+        {
+          "ResponsiblePersonContactID_PersonneInformationID": "sassatelli@i3s.unice.fr"
+        },
+        {
+          "ResponsiblePersonContactID_PersonneInformationID": "hui-yin.wu@inria.fr"
+        },
+        {
+          "ResponsiblePersonContactID_PersonneInformationID": "florent.robert@inria.fr"
+        }
+      ],
+      "NonTechnicalDescription_FundingID": "This work has been partially supported by the French National Research Agency though the ANR CREATTIVE3D project ANR-21-CE33-0001 and UCA JEDI Investissements d’Avenir ANR-15-IDEX-0001 (IDEX reference center for extended reality XR2C2).",
+      "NonTechnicalDescription_GoalID": " Improve understanding of user use in VR. Understand the impact of low vision on the behavior and movement and rehabilitation of people who are subject to it.",
+      "NonTechnicalDescription_ImmersionTypeID": "Virtual Reality (VR)",
+      "NonTechnicalDescription_ImmersivityDegreeID": "Full Immersion",
+      "NonTechnicalDescription_UniqueORRedoableID": "Unique",
+      "NonTechnicalDescription_TypicalExperienceID": "User evaluation",
+      "NonTechnicalDescription_ProgressStateID": "In Progress",
+      "NonTechnicalDescription_ImageFilesID": [
+        {
+          "ImageFilesID_ImagePathID": [
+            "mediaFiles/Images/projectimg (6).jpg",
+            "mediaFiles/Images/projectimg (7).jpg"
+          ]
+        }
+      ],
+      "NonTechnicalDescription_VideoFilesID": [
+        {
+          "VideoFilesID_VideoPathID": [
+            "mediaFiles/Videos/vid1.mp4",
+            "mediaFiles/Videos/vid2.mp4"
+          ]
+        }
+      ]
+    },
+    "Hardware": {
+      "Hardware_ComputerDependentID": true,
+      "Hardware_ComputerQuantityID": 2,
+      "Hardware_ComputerParticularAspectsID": "Quite powerful computer",
+      "Hardware_GPUDependantID": true,
+      "Hardware_GPUModelInfoID": "Nvidia RTX 3080",
+      "Hardware_DisplayDevicesID": [
+        {
+          "DisplayDevicesID_DeviceTypeID": "HTC Vive Eye Pro",
+          "DisplayDevicesID_DevicesQuantityID": 1
+        }
+      ],
+      "Hardware_TrackingDevicesID": "HTC Vive Eye Pro",
+      "Hardware_InputDevicesID": "HTC VIVE EYE PRO Controllers",
+      "Hardware_OutputDevicesID": "Headphones",
+      "Hardware_CablingID": true,
+      "Hardware_CablingSpecificationID": "HTC VIVE Wireless Adapter",
+      "Hardware_AudioEquipmentID": [
+        {
+          "AudioEquipmentID_EquipmentTypeID": "Headphones"
+        }
+      ],
+      "Hardware_OtherHardwareInformationID": ""
+    },
+    "Software": {
+      "Software_ExecutableFileID": "Project not accessible (open version planned) / No executable, the experience is launched from the Unity project",
+      "Software_SimulationID": false,
+      "Software_PlatformID": "OS Compatible with Unity",
+      "Software_DependenciesID": "Helmet: No /Computer:Unity for VR, Consensys for shimmer (physio data), Xsens MVN for mocap, HTC Wireless software, SRanipal for headset eyetracking, SteamVR for operating and configuring VR on the HTC headset.",
+      "Software_SourceCodeID": "",
+      "Software_OtherSoftwareInformationID": ""
+    },
+    "Production": {
+      "Production_3DAssetsToolsID": " Assets purchased: https://assetstore.unity.com/packages/3d/environments/urban/polygon-city-low-poly-3d-art-by-synty-95214",
+      "Production_SoundsDesignSpatialAudioID": [
+        {
+          "SoundsDesignSpatialAudioID_SoundsAudioTypeID": "Royalty-Free Sounds"
+        },
+        {
+          "SoundsDesignSpatialAudioID_SoundsAudioTypeID": "Specialized Car Sounds"
+        }
+      ],
+      "Production_CodeLibrariesCustomID": "",
+      "Production_EngineVersionID": "Unity / Version 2020.2.1f1",
+      "Production_PluginsID": [
+        {
+          "PluginsID_PluginsTypeID": "tobiiXR SDK (eye tracking)"
+        },
+        {
+          "PluginsID_PluginsTypeID": "ViveSR Library (eye tracking)"
+        },
+        {
+          "PluginsID_PluginsTypeID": "SteamVR plugin"
+        }
+      ],
+      "Production_ModelsID": [
+        {
+          "ModelsID_ModelNameID": "Purchased models (pending list of bought models)"
+        }
+      ],
+      "Production_MaterialsTexturesID": "(pending bought materials/textures list): https://assetstore.unity.com/packages/3d/environments/urban/polygon-city-low-poly-3d-art-by-synty-95214",
+      "Production_SourceVideoFilesID": "",
+      "Production_ReusableHomemadeAssetsID": [
+        {
+          "ReusableHomemadeAssetsID_AssetsInformationID": "Assets purchased: https://assetstore.unity.com/packages/3d/environments/urban/polygon-city-low-poly-3d-art-by-synty-95214"
+        }
+      ],
+      "Production_ArtistsNameID": "",
+      "Production_NarrativeScriptsID": [
+        {
+          "NarrativeScriptsID_ScriptsDescriptionID": "Audio in French or English",
+          "NarrativeScriptsID_ScriptsQuantityID": 1
+        }
+      ],
+      "Production_OtherDependenciesID": "",
+      "Production_OtherProductionInformationID": ""
+    },
+    "Target Users": {
+      "TargetUsers_DisabilityAccessibilityID": "No, overly marked handicaps are incompatible with the objective of the study. (Requires normal vision, normal physical walking, and being able to hear audio instructions)",
+      "TargetUsers_AccessibilityLayUsersID": false,
+      "TargetUsers_ParticipantsID": [
+        {
+          "ParticipantsID_ParticipantRangeID": "Maximum",
+          "ParticipantsID_ParticipantCapacityID": 1
+        }
+      ],
+      "TargetUsers_MultiplayerID": false,
+      "TargetUsers_TargetAudienceID": "Participants must be adults aged 18 to 59, have normal or corrected-to-normal vision in both eyes (with glasses or contact lenses), and not have sensorimotor disorders.",
+      "TargetUsers_CommentsID": "VR: people must be able to walk, use their hands - Normal vision because eye tracking: not yet calibrated for people who do not have vision."
+    },
+    "Facility": {
+      "Facility_ExperienceTimeID": "2h",
+      "Facility_TimelineID": "Approximately 30 minutes of equipment, ~60 minutes to pass the 4 conditions then ~20 min post-experience questionnaire.",
+      "Facility_InstallationCrewID": null,
+      "Facility_SurfaceID": "10m x 4m room",
+      "Facility_PhysicalDelimitationsID": "Mattress on the edges to signal to the person that they are at the edge of the real area.",
+      "Facility_VirtualDelimitationsID": "4 HTC Vive Base Station allowing demarcation in VR.",
+      "Facility_WallsID": "4 blue walls",
+      "Facility_ProjectionID": "No",
+      "Facility_StandingOrSittingID": "Standing",
+      "Facility_LightingID": "No",
+      "Facility_AcousticsID": "Not applicable here (quiet environment?)",
+      "Facility_SensoryInputsID": "",
+      "Facility_SensoryOutputsID": "Haptic via HTC Vice controllers",
+      "Facility_SupervisionID": "Have a person close to the user in case / Orientation in the same direction.",
+      "Facility_OtherExternalInputsOutputsID": "No",
+      "Facility_SpatialFlexibilityID": "Yes",
+      "Facility_TeamID": [
+        {
+          "TeamID_castID": "Florent Robert"
+        }
+      ],
+      "Facility_SanitaryConditionsID": "Cleaning the equipment after each pass."
+    },
+    "Experience Waiting Line": {
+      "ExperienceWaitingLine_WaitingTimeID": "No",
+      "ExperienceWaitingLine_VisibilityID": false,
+      "ExperienceWaitingLine_AudibilityID": false,
+      "ExperienceWaitingLine_CapacityID": null,
+      "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID": ""
+    },
+    "Privacy": {
+      "Privacy_PersonalDataID": "Name, first name, physiology of the user / Data analysis / Data kept for a maximum period of 15 years.",
+      "Privacy_ExposureID": false,
+      "Privacy_ConfidentialityID": "Yes",
+      "Privacy_LicenseID": "No",
+      "Privacy_OtherPrivacyInformationID": ""
+    },
+    "Documentation": {
+      "Documentation_ExistingDocumentationID": false,
+      "Documentation_ExistingDocumentationInformationID": "Documentation once GUST 3D is open to everyone",
+      "Documentation_PastInstallationsID": "",
+      "Documentation_ScriptID": true,
+      "Documentation_ScriptInformationID": "Basic / Scenario not available<br>",
+      "Documentation_DesignID": "https://scholar.google.com/scholar?cluster=16326267173025683608&hl=fr&as_sdt=0.5",
+      "Documentation_SchematicsID": "https://scholar.google.com/scholar?cluster=10802679405960716035&hl=fr&as_sdt=0.5",
+      "Documentation_ScientificPublicationID": "",
+      "Documentation_OtherDocumentationInformationID": ""
+    },
+    "Experience Evaluation": {
+      "ExperienceHasEvaluation_QuestionnairesID": "Part 4.3 of the paper explaining the parts inspired by the creation of the questionnaire.",
+      "ExperienceHasEvaluation_ProtocolID": "",
+      "ExperienceHasEvaluation_QuantitativeMeasurementsID": "",
+      "ExperienceHasEvaluation_SampleID": "34 participants but aims for 40",
+      "ExperienceHasEvaluation_DevicesID": "Survey.inria which is based on limesurvey"
+    },
+    "Project Visibility": {
+      "ProjectVisibility_VisibilityID": "Public"
+    }
+  },
+  {
+    "id": 3,
+    "Interview": {
+      "Interview_DateID": "2023-07-12",
+      "Interview_PersonInterviewedID": "Auriane Gros",
+      "Interview_FormatID": "Zoom",
+      "Interview_DurationID": "30 minutes (continued by email)"
+    },
+    "Non Technical Description": {
+      "NonTechnicalDescription_NameID": "OREVAS",
+      "NonTechnicalDescription_ResponsiblePersonContactID": [],
+      "NonTechnicalDescription_FundingID": "Academy 5",
+      "NonTechnicalDescription_GoalID": "Continuation of the “Art and Health” project. Comparison of participatory artistic practices between distance and face-to-face.",
+      "NonTechnicalDescription_ImmersionTypeID": "Augmented Reality (AR)",
+      "NonTechnicalDescription_ImmersivityDegreeID": "Partial Immersion",
+      "NonTechnicalDescription_UniqueORRedoableID": "Redoable",
+      "NonTechnicalDescription_TypicalExperienceID": "User evaluation",
+      "NonTechnicalDescription_ProgressStateID": "Completed",
+      "NonTechnicalDescription_ImageFilesID": [
+        {
+          "ImageFilesID_ImagePathID": [
+            "mediaFiles/Images/projectimg (2).jpg",
+            "mediaFiles/Images/projectimg (3).jpg"
+          ]
+        }
+      ],
+      "NonTechnicalDescription_VideoFilesID": [
+        {
+          "VideoFilesID_VideoPathID": [
+            "mediaFiles/Videos/vid1.mp4"
+          ]
+        }
+      ]
+    },
+    "Hardware": {
+      "Hardware_ComputerDependentID": false,
+      "Hardware_ComputerQuantityID": null,
+      "Hardware_ComputerParticularAspectsID": "",
+      "Hardware_GPUDependantID": false,
+      "Hardware_GPUModelInfoID": "",
+      "Hardware_DisplayDevicesID": [
+        {
+          "DisplayDevicesID_DeviceTypeID": "Phone",
+          "DisplayDevicesID_DevicesQuantityID": 1
+        }
+      ],
+      "Hardware_TrackingDevicesID": "",
+      "Hardware_InputDevicesID": "",
+      "Hardware_OutputDevicesID": "",
+      "Hardware_CablingID": false,
+      "Hardware_CablingSpecificationID": "",
+      "Hardware_AudioEquipmentID": [],
+      "Hardware_OtherHardwareInformationID": ""
+    },
+    "Software": {
+      "Software_ExecutableFileID": "",
+      "Software_SimulationID": false,
+      "Software_PlatformID": "",
+      "Software_DependenciesID": "",
+      "Software_SourceCodeID": "",
+      "Software_OtherSoftwareInformationID": ""
+    },
+    "Production": {
+      "Production_3DAssetsToolsID": "",
+      "Production_SoundsDesignSpatialAudioID": [],
+      "Production_CodeLibrariesCustomID": "",
+      "Production_EngineVersionID": "",
+      "Production_PluginsID": [],
+      "Production_ModelsID": [],
+      "Production_MaterialsTexturesID": "",
+      "Production_SourceVideoFilesID": "",
+      "Production_ReusableHomemadeAssetsID": [],
+      "Production_ArtistsNameID": "",
+      "Production_NarrativeScriptsID": [],
+      "Production_OtherDependenciesID": "",
+      "Production_OtherProductionInformationID": ""
+    },
+    "Target Users": {
+      "TargetUsers_DisabilityAccessibilityID": "Yes. Cognitive disability of seniors taken into account. Sensory disability in adolescents",
+      "TargetUsers_AccessibilityLayUsersID": true,
+      "TargetUsers_ParticipantsID": [
+        {
+          "ParticipantsID_ParticipantRangeID": "Maximum",
+          "ParticipantsID_ParticipantCapacityID": 1
+        }
+      ],
+      "TargetUsers_MultiplayerID": false,
+      "TargetUsers_TargetAudienceID": "",
+      "TargetUsers_CommentsID": ""
+    },
+    "Facility": {
+      "Facility_ExperienceTimeID": "15 - 20 minutes",
+      "Facility_TimelineID": "Identification of odorants (memorization) Memorization and evocation of odors.",
+      "Facility_InstallationCrewID": 1,
+      "Facility_SurfaceID": "",
+      "Facility_PhysicalDelimitationsID": "",
+      "Facility_VirtualDelimitationsID": "",
+      "Facility_WallsID": "",
+      "Facility_ProjectionID": "",
+      "Facility_StandingOrSittingID": "Sitting",
+      "Facility_LightingID": "",
+      "Facility_AcousticsID": "",
+      "Facility_SensoryInputsID": "No",
+      "Facility_SensoryOutputsID": "No",
+      "Facility_SupervisionID": "",
+      "Facility_OtherExternalInputsOutputsID": "",
+      "Facility_SpatialFlexibilityID": "",
+      "Facility_TeamID": [],
+      "Facility_SanitaryConditionsID": ""
+    },
+    "Experience Waiting Line": {
+      "ExperienceWaitingLine_WaitingTimeID": "",
+      "ExperienceWaitingLine_VisibilityID": false,
+      "ExperienceWaitingLine_AudibilityID": false,
+      "ExperienceWaitingLine_CapacityID": null,
+      "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID": ""
+    },
+    "Privacy": {
+      "Privacy_PersonalDataID": "",
+      "Privacy_ExposureID": false,
+      "Privacy_ConfidentialityID": "",
+      "Privacy_LicenseID": "",
+      "Privacy_OtherPrivacyInformationID": ""
+    },
+    "Documentation": {
+      "Documentation_ExistingDocumentationID": false,
+      "Documentation_ExistingDocumentationInformationID": "",
+      "Documentation_PastInstallationsID": "",
+      "Documentation_ScriptID": false,
+      "Documentation_ScriptInformationID": "",
+      "Documentation_DesignID": "",
+      "Documentation_SchematicsID": "",
+      "Documentation_ScientificPublicationID": "",
+      "Documentation_OtherDocumentationInformationID": ""
+    },
+    "Experience Evaluation": {
+      "ExperienceHasEvaluation_QuestionnairesID": "",
+      "ExperienceHasEvaluation_ProtocolID": "",
+      "ExperienceHasEvaluation_QuantitativeMeasurementsID": "",
+      "ExperienceHasEvaluation_SampleID": "",
+      "ExperienceHasEvaluation_DevicesID": ""
+    },
+    "Project Visibility": {
+      "ProjectVisibility_VisibilityID": "Public"
+    }
+  },
+  {
+    "id": 4,
+    "Interview": {
+      "Interview_DateID": "2023-07-14",
+      "Interview_PersonInterviewedID": "François Paris",
+      "Interview_FormatID": "Zoom",
+      "Interview_DurationID": "2h"
+    },
+    "Non Technical Description": {
+      "NonTechnicalDescription_NameID": "Black sunflowers",
+      "NonTechnicalDescription_ResponsiblePersonContactID": [],
+      "NonTechnicalDescription_FundingID": "UCA: €4000 Many people participated in the financing",
+      "NonTechnicalDescription_GoalID": "",
+      "NonTechnicalDescription_ImmersionTypeID": "Immersion through Sound ",
+      "NonTechnicalDescription_ImmersivityDegreeID": "Not Applicable ",
+      "NonTechnicalDescription_UniqueORRedoableID": "Redoable",
+      "NonTechnicalDescription_TypicalExperienceID": "",
+      "NonTechnicalDescription_ProgressStateID": "",
+      "NonTechnicalDescription_ImageFilesID": [
+        {
+          "ImageFilesID_ImagePathID": [
+            "mediaFiles/Images/projectimg (1).jpg",
+            "mediaFiles/Images/projectimg (5).jpg"
+          ]
+        }
+      ],
+      "NonTechnicalDescription_VideoFilesID": [
+        {
+          "VideoFilesID_VideoPathID": [
+            "mediaFiles/Videos/vid1.mp4"
+          ]
+        }
+      ]
+    },
+    "Hardware": {
+      "Hardware_ComputerDependentID": true,
+      "Hardware_ComputerQuantityID": 2,
+      "Hardware_ComputerParticularAspectsID": "Very powerful computers (Mac first)",
+      "Hardware_GPUDependantID": false,
+      "Hardware_GPUModelInfoID": "",
+      "Hardware_DisplayDevicesID": [],
+      "Hardware_TrackingDevicesID": "",
+      "Hardware_InputDevicesID": "",
+      "Hardware_OutputDevicesID": "Microphones",
+      "Hardware_CablingID": true,
+      "Hardware_CablingSpecificationID": "Using cables everywhere",
+      "Hardware_AudioEquipmentID": [
+        {
+          "AudioEquipmentID_EquipmentTypeID": "Microphones"
+        },
+        {
+          "AudioEquipmentID_EquipmentTypeID": "Speakers"
+        },
+        {
+          "AudioEquipmentID_EquipmentTypeID": "Mixers"
+        },
+        {
+          "AudioEquipmentID_EquipmentTypeID": "Device"
+        }
+      ],
+      "Hardware_OtherHardwareInformationID": "Use of emulation (singers' voices)"
+    },
+    "Software": {
+      "Software_ExecutableFileID": "",
+      "Software_SimulationID": false,
+      "Software_PlatformID": "",
+      "Software_DependenciesID": "",
+      "Software_SourceCodeID": "",
+      "Software_OtherSoftwareInformationID": "Sybelius¨(score engraver) / Using Reaper for the mixing part / Kontact (sampler) / Antescofo / Max MSP / Falcon (sampler) / Pianotech (piano sound)"
+    },
+    "Production": {
+      "Production_3DAssetsToolsID": "",
+      "Production_SoundsDesignSpatialAudioID": [],
+      "Production_CodeLibrariesCustomID": "",
+      "Production_EngineVersionID": "",
+      "Production_PluginsID": [
+        {
+          "PluginsID_PluginsTypeID": "Micro tones (free access)"
+        }
+      ],
+      "Production_ModelsID": [],
+      "Production_MaterialsTexturesID": "",
+      "Production_SourceVideoFilesID": "",
+      "Production_ReusableHomemadeAssetsID": [],
+      "Production_ArtistsNameID": "",
+      "Production_NarrativeScriptsID": [],
+      "Production_OtherDependenciesID": "",
+      "Production_OtherProductionInformationID": ""
+    },
+    "Target Users": {
+      "TargetUsers_DisabilityAccessibilityID": "",
+      "TargetUsers_AccessibilityLayUsersID": false,
+      "TargetUsers_ParticipantsID": [],
+      "TargetUsers_MultiplayerID": false,
+      "TargetUsers_TargetAudienceID": "Teenager aged 14-16",
+      "TargetUsers_CommentsID": ""
+    },
+    "Facility": {
+      "Facility_ExperienceTimeID": "50min",
+      "Facility_TimelineID": "",
+      "Facility_InstallationCrewID": 35,
+      "Facility_SurfaceID": "Large stage (scene)",
+      "Facility_PhysicalDelimitationsID": "",
+      "Facility_VirtualDelimitationsID": "",
+      "Facility_WallsID": "",
+      "Facility_ProjectionID": "Sound projection",
+      "Facility_StandingOrSittingID": "Sitting",
+      "Facility_LightingID": "",
+      "Facility_AcousticsID": "Tray size and hardware layout",
+      "Facility_SensoryInputsID": "",
+      "Facility_SensoryOutputsID": "",
+      "Facility_SupervisionID": "",
+      "Facility_OtherExternalInputsOutputsID": "",
+      "Facility_SpatialFlexibilityID": "Depends on location, material and set",
+      "Facility_TeamID": [
+        {
+          "TeamID_castID": "Management",
+          "TeamID_CastNumberID": 1
+        },
+        {
+          "TeamID_castID": "Singers/Soloists",
+          "TeamID_CastNumberID": 12
+        },
+        {
+          "TeamID_castID": "Musicians",
+          "TeamID_CastNumberID": 7
+        },
+        {
+          "TeamID_castID": "Teenagers",
+          "TeamID_CastNumberID": 8
+        }
+      ],
+      "Facility_SanitaryConditionsID": ""
+    },
+    "Experience Waiting Line": {
+      "ExperienceWaitingLine_WaitingTimeID": "",
+      "ExperienceWaitingLine_VisibilityID": false,
+      "ExperienceWaitingLine_AudibilityID": false,
+      "ExperienceWaitingLine_CapacityID": null,
+      "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID": ""
+    },
+    "Privacy": {
+      "Privacy_PersonalDataID": "",
+      "Privacy_ExposureID": false,
+      "Privacy_ConfidentialityID": "",
+      "Privacy_LicenseID": "",
+      "Privacy_OtherPrivacyInformationID": ""
+    },
+    "Documentation": {
+      "Documentation_ExistingDocumentationID": true,
+      "Documentation_ExistingDocumentationInformationID": "Musical scores",
+      "Documentation_PastInstallationsID": "",
+      "Documentation_ScriptID": false,
+      "Documentation_ScriptInformationID": "",
+      "Documentation_DesignID": "",
+      "Documentation_SchematicsID": "",
+      "Documentation_ScientificPublicationID": "",
+      "Documentation_OtherDocumentationInformationID": ""
+    },
+    "Experience Evaluation": {
+      "ExperienceHasEvaluation_QuestionnairesID": "",
+      "ExperienceHasEvaluation_ProtocolID": "",
+      "ExperienceHasEvaluation_QuantitativeMeasurementsID": "",
+      "ExperienceHasEvaluation_SampleID": "",
+      "ExperienceHasEvaluation_DevicesID": ""
     },
     "Project Visibility": {
       "ProjectVisibility_VisibilityID": "Public"

@@ -46,8 +46,11 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href="index.html">XR²C²</a></h1>
-                <!-- <a href="index.html"><img src="styles/bootstrapStyle/img/logo.png" alt="" class="img-fluid"></a>-->
+                <div class="d-flex align-items-center">
+                    <a href="index.html"><img src="styles/bootstrapStyle/img/apple-touch-icon.png" alt=""
+                            class="img-fluid"></a>
+                    <h1><a href="index.html">XR²C²</a></h1>
+                </div>
             </div>
 
             <nav id="navbar" class="navbar">
@@ -79,11 +82,12 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
-                        <div class="input-group">
+                        <div class="input-group" style="border: 5px solid #eee; border-radius: 10px;">
                             <input type="text" class="form-control" id="searchInput"
                                 placeholder="Search by project name or description">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <span class="input-group-text" style="border-radius: 0px; border-bottom-right-radius: 5px;
+                                border-top-right-radius: 5px;"><i class="bi bi-search"></i></span>
                             </div>
                         </div>
                     </div>
@@ -312,7 +316,7 @@
                 if (visibility === "Public" || visibility === "") {
                     const projectId = project.id;
                     let projectName = 'Project Name Not Available';
-                    let projectGoal = 'Goal Not Available';
+                    let projectGoal = 'Description Not Available';
                     let imageUrl = '/mediaFiles/Images/placeholder.jpg'; // Default placeholder image
                     if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_NameID"]) {
                         projectName = project["Non Technical Description"]["NonTechnicalDescription_NameID"];

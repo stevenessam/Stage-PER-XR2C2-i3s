@@ -1,5 +1,5 @@
 # Readme
-## Projet XR2C2 - Steven Essam
+## Projet XR²C² - Steven Essam
 
 # Langage de programmation
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -8,7 +8,7 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
 
-# Structure de dossier du projet XR2C2
+# Structure de dossier du projet XR²C²
         
     XR2C2_Project/
     │

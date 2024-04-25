@@ -438,12 +438,11 @@
                     accordionHeader.classList.add('accordion-header');
                     accordionHeader.innerHTML = `
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-    data-bs-target="#panelsStayOpen-${categoryName.replace(/ /g, '')}" aria-expanded="false"
-    aria-controls="panelsStayOpen-${categoryName.replace(/ /g, '')}"
-    style="background-color: #eeeeee; font-size: 20px; font-weight: bold;">
-    ${categoryName}
-</button>
-
+                    data-bs-target="#panelsStayOpen-${categoryName.replace(/ /g, '')}" aria-expanded="false"
+                    aria-controls="panelsStayOpen-${categoryName.replace(/ /g, '')}"
+                    style="background-color: #eeeeee; font-size: 20px; font-weight: bold;">
+                    ${categoryName}
+                    </button>
                 `;
                     accordionItem.appendChild(accordionHeader);
 

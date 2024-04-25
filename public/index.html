@@ -172,12 +172,12 @@
                         <div class="content d-flex flex-column align-items-center"> <!-- Center the content -->
                             <div class="count-box text-center"> <!-- Center the text -->
                                 <i class="bi bi-journal-richtext mb-2"></i> <!-- Changed mb-3 to mb-2 -->
-                                <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1"
-                                    class="purecounter"></span>
+                                <span id="projectCount">0</span>
                                 <p style="font-size: 20px;"><strong>Projects</strong> </p>
                             </div>
                         </div><!-- End .content-->
                     </div>
+
 
                     <div class="col-md-4 pt-4 pt-md-0" data-aos="fade-left" data-aos-delay="300">
                         <!-- Changed col-xl to col-md-4 -->
@@ -265,3 +265,40 @@
 
     <!-- Template Main JS File -->
     <script src="styles/bootstrapStyle/js/main.js"></script>
+
+    <!-- Your HTML code -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to fetch projects.json and count the number of projects
+            function fetchAndCountProjects() {
+                fetch('projects') // Ensure the correct path to your JSON file
+                    .then(response => response.json())
+                    .then(data => {
+                        const projectIds = data.map(project => project.id); // Extract all project ids
+                        const uniqueProjectIds = new Set(projectIds); // Use a Set to get unique ids
+                        const projectCount = uniqueProjectIds.size; // Count the unique ids
+                        updateProjectCount(projectCount);
+                    })
+                    .catch(error => console.error('Error fetching projects:', error));
+            }
+
+            // Function to update the project count in the HTML
+            function updateProjectCount(count) {
+                const projectCountSpan = document.getElementById('projectCount');
+                projectCountSpan.textContent = count;
+            }
+
+            // Call the fetchAndCountProjects function to fetch projects.json and update the project count
+            fetchAndCountProjects();
+
+        });
+    </script>
+
+</body>
+
+</html>
+
+</body>
+
+</html>

@@ -745,6 +745,16 @@
                 "type": "String",
                 "description": "The attribute encompasses the hardware and equipment, both IT and physiological, used during the evaluation of the immersive project."
             }
+        ],
+        "Project Visibility":[  
+            {
+                "label": "Visibility",
+                "AttributeID" : "ProjectVisibility_VisibilityID",
+                "type": "option",
+                "options": ["Public", "Private"],
+                "other": false,
+                "description": "The attribute specifies whether the project is visible on the website or kept private."
+            }
         ]
     }
 ]

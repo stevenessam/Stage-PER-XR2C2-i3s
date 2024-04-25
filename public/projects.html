@@ -201,49 +201,51 @@
 
             const currentProjects = projectsData.slice(startIndex, endIndex);
             currentProjects.forEach(project => {
-                const projectId = project.id;
-                let projectName = 'Project Name Not Available';
-                let projectGoal = 'Goal Not Available';
-                let imageUrl = '/mediaFiles/Images/placeholder.jpg'; // Default placeholder image
-                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_NameID"]) {
-                    projectName = project["Non Technical Description"]["NonTechnicalDescription_NameID"];
-                }
-                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_GoalID"]) {
-                    projectGoal = project["Non Technical Description"]["NonTechnicalDescription_GoalID"];
-                    // Truncate goal text if it exceeds a certain length
-                    const maxLength = 150;
-                    if (projectGoal.length > maxLength) {
-                        projectGoal = projectGoal.substring(0, maxLength) + '...';
+                const visibility = project["Project Visibility"]["ProjectVisibility_VisibilityID"];
+                // Check visibility
+                if (visibility === "Public") {
+                    const projectId = project.id;
+                    let projectName = 'Project Name Not Available';
+                    let projectGoal = 'Goal Not Available';
+                    let imageUrl = '/mediaFiles/Images/placeholder.jpg'; // Default placeholder image
+                    if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_NameID"]) {
+                        projectName = project["Non Technical Description"]["NonTechnicalDescription_NameID"];
                     }
-                }
-                if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"]) {
-                    const imageFiles = project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"];
-                    if (imageFiles.length > 0 && imageFiles[0]["ImageFilesID_ImagePathID"].length > 0) {
-                        imageUrl = imageFiles[0]["ImageFilesID_ImagePathID"][0];
+                    if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_GoalID"]) {
+                        projectGoal = project["Non Technical Description"]["NonTechnicalDescription_GoalID"];
+                        // Truncate goal text if it exceeds a certain length
+                        const maxLength = 150;
+                        if (projectGoal.length > maxLength) {
+                            projectGoal = projectGoal.substring(0, maxLength) + '...';
+                        }
                     }
-                }
-                // Create card element
-                const card = document.createElement('div');
-                card.classList.add('col', 'd-flex');
-                card.innerHTML = `
-                <div class="card shadow-sm w-100">
-                    <a href="#" onclick="redirectToProjectInformation(${projectId})">
-                        <img src="${imageUrl}" class="card-img-top" alt="Project Image">
-                    </a>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${projectName}</h5>
-                        <p class="card-text">${projectGoal}</p>
-                        <div class="mt-auto">
-                            <div class="btn-group w-100">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"
-                                style="height: 40px;" onclick="redirectToProjectInformation(${projectId})">View Project</button>
-                            </div>
+                    if (project["Non Technical Description"] && project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"]) {
+                        const imageFiles = project["Non Technical Description"]["NonTechnicalDescription_ImageFilesID"];
+                        if (imageFiles.length > 0 && imageFiles[0]["ImageFilesID_ImagePathID"].length > 0) {
+                            imageUrl = imageFiles[0]["ImageFilesID_ImagePathID"][0];
+                        }
+                    }
+                    // Create card element
+                    const card = document.createElement('div');
+                    card.classList.add('col', 'd-flex');
+                    card.innerHTML = `
+            <div class="card shadow-sm w-100">
+                <a href="#" onclick="redirectToProjectInformation(${projectId})">
+                    <img src="${imageUrl}" class="card-img-top" alt="Project Image">
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${projectName}</h5>
+                    <p class="card-text">${projectGoal}</p>
+                    <div class="mt-auto">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                            style="height: 40px;" onclick="redirectToProjectInformation(${projectId})">View Project</button>
                         </div>
                     </div>
-                </div>`;
-
-
-                projectsContainer.appendChild(card);
+                </div>
+            </div>`;
+                    projectsContainer.appendChild(card);
+                }
             });
         }
 

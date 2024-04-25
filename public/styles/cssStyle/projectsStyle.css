@@ -70,3 +70,23 @@
     transform: scale(1.05);
 
 }
+
+.pagination .page-link {
+    color: #3498db;
+    background-color: #fff;
+}
+
+.pagination .page-link:hover {
+    color: #fff;
+    background-color: #3498db;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.pagination .page-item.active .page-link:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+}

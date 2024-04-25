@@ -8,122 +8,190 @@
     <!-- Bootstrap CDN links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="styles/bootstrapStyle/img/favicon.png" rel="icon">
+    <link href="styles/bootstrapStyle/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="styles/bootstrapStyle/vendor/aos/aos.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="styles/bootstrapStyle/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="styles/bootstrapStyle/css/style.css" rel="stylesheet">
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles/cssStyle/projectsStyle.css">
 </head>
+<!-- ======= Hero Section ======= -->
+<section class="d-flex align-items-center">
+
+
+</section><!-- End Hero -->
 
 <body>
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 mb-4">
-                    <input type="text" class="form-control" id="searchInput"
-                        placeholder="Search by project name or description">
-                </div>
-            </div>
-            <div class="row">
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="progressStateDropdownButton"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Progress State
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="progressStateDropdownButton"
-                            id="progress-state-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Immersion Type
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="immersion-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="immersionDegreeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Immersivity Degree
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="immersionDegreeDropdownButton"
-                            id="immersion-degree-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="displayDeviceTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Display Device Type
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="displayDeviceTypeDropdownButton"
-                            id="display-device-type-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="soundsAudioTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Sound Audio Type
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="soundsAudioTypeDropdownButton"
-                            id="sounds-audio-type-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="audioEquipmentTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Audio Equipment Type
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="audioEquipmentTypeDropdownButton"
-                            id="audio-equipment-type-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="dropdown-col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="trackingDevicesDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter by Tracking Devices
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="trackingDevicesDropdownButton"
-                            id="tracking-devices-dropdown">
-                            <!-- Dropdown items will be populated dynamically -->
-                        </ul>
-                    </div>
-                </div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
 
+            <div class="logo">
+                <h1><a href="index.html">XR2C2</a></h1>
+                <!-- <a href="index.html"><img src="styles/bootstrapStyle/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
-            <!-- Section to display selected filters -->
-            <div class="row mb-3" id="selectedFiltersSection">
-                <!-- Selected filters will be displayed here -->
-            </div>
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3" id="projects-container">
-                <!-- Project cards will be dynamically populated here -->
-            </div>
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center mt-5" id="pagination">
-                    <!-- Pagination links will be dynamically populated here -->
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+                    <li><a class="nav-link scrollto " href="projects.html">Projects</a></li>
+                    <li><a class="nav-link scrollto" href="about.html">About</a></li>
+                    <li><a class="nav-link scrollto" href="contact.html">Contact</a></li>
                 </ul>
-            </nav>
-        </div>
-    </div>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
 
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Projects</h2>
+                <p style=" width: 60%; margin: 0 auto;">Explore our diverse range of immersive projects designed to push
+                    the boundaries of technology and
+                    creativity. From virtual reality experiences to interactive installations, discover innovative
+                    solutions that captivate the senses and redefine the way we interact with digital content.</p>
+            </div>
+        </div>
+        <div class="album py-5" style="background-color: #fff;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mb-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput"
+                                placeholder="Search by project name or description">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="progressStateDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Progress State
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="progressStateDropdownButton"
+                                id="progress-state-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Immersion Type
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="immersion-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="immersionDegreeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Immersivity Degree
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="immersionDegreeDropdownButton"
+                                id="immersion-degree-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="displayDeviceTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Display Device Type
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="displayDeviceTypeDropdownButton"
+                                id="display-device-type-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="soundsAudioTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Sound Audio Type
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="soundsAudioTypeDropdownButton"
+                                id="sounds-audio-type-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="audioEquipmentTypeDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Audio Equipment Type
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="audioEquipmentTypeDropdownButton"
+                                id="audio-equipment-type-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dropdown-col">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                id="trackingDevicesDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter by Tracking Devices
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="trackingDevicesDropdownButton"
+                                id="tracking-devices-dropdown">
+                                <!-- Dropdown items will be populated dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Section to display selected filters -->
+                <div class="row mb-3" id="selectedFiltersSection">
+                    <!-- Selected filters will be displayed here -->
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3" id="projects-container">
+                    <!-- Project cards will be dynamically populated here -->
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mt-5" id="pagination">
+                        <!-- Pagination links will be dynamically populated here -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </main>
     <!-- Bootstrap JS CDN link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -229,21 +297,21 @@
                     const card = document.createElement('div');
                     card.classList.add('col', 'd-flex');
                     card.innerHTML = `
-            <div class="card shadow-sm w-100">
-                <a href="#" onclick="redirectToProjectInformation(${projectId})">
-                    <img src="${imageUrl}" class="card-img-top" alt="Project Image">
-                </a>
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${projectName}</h5>
-                    <p class="card-text">${projectGoal}</p>
-                    <div class="mt-auto">
-                        <div class="btn-group w-100">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                            style="height: 40px;" onclick="redirectToProjectInformation(${projectId})">View Project</button>
+                <div class="card shadow-sm w-100">
+                    <a href="#" onclick="redirectToProjectInformation(${projectId})">
+                        <img src="${imageUrl}" class="card-img-top" alt="Project Image">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${projectName}</h5>
+                        <p class="card-text">${projectGoal}</p>
+                        <div class="mt-auto">
+                            <div class="btn-group w-100">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"
+                                style="height: 40px;" onclick="redirectToProjectInformation(${projectId})">View Project</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
                     projectsContainer.appendChild(card);
                 }
             });
@@ -623,6 +691,14 @@
         }
 
     </script>
+    <!-- Vendor JS Files -->
+
+    <script src="styles/bootstrapStyle/vendor/aos/aos.js"></script>
+    <script src="styles/bootstrapStyle/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="styles/bootstrapStyle/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="styles/bootstrapStyle/js/main.js"></script>
 </body>
 
 </html>

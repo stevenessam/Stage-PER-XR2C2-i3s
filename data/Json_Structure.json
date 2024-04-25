@@ -34,15 +34,15 @@
                 "description": "The attribute serves as a distinctive identifier for the project. Each specific project mentioned carries a unique name reflecting its goals, whether related to gender equality, user behavior in VR, participatory artistic practices, or financial considerations."
             },
             {
-                "label": "Personne Responsable Contact",
-                "AttributeID" : "NonTechnicalDescription_PersonneResponsableContactID",
+                "label": "Responsible Person Contact",
+                "AttributeID" : "NonTechnicalDescription_ResponsiblePersonContactID",
                 "type": "list",
                 "description": "The attribute provides information about individuals playing key roles in project supervision or management, vital for external parties, collaborators, or interested individuals seeking project-related information, collaboration opportunities, or coordination details.",
                 "children": [
                     [
                         {
                             "label": "Personne Information",
-                            "AttributeID" : "PersonneResponsableContactID_PersonneInformationID",
+                            "AttributeID" : "ResponsiblePersonContactID_PersonneInformationID",
                             "type": "String"
                         }
                     ]

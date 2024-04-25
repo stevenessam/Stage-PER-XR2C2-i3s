@@ -9,15 +9,15 @@
     },
     "Non Technical Description": {
       "NonTechnicalDescription_NameID": "ReVEGO (Virtual Reality for Gender Equality in Guidance)",
-      "NonTechnicalDescription_PersonneResponsableContactID": [
+      "NonTechnicalDescription_ResponsiblePersonContactID": [
         {
-          "PersonneResponsableContactID_PersonneInformationID": "lucile.sassatelli@univ-cotedazur.fr"
+          "ResponsiblePersonContactID_PersonneInformationID": "lucile.sassatelli@univ-cotedazur.fr"
         },
         {
-          "PersonneResponsableContactID_PersonneInformationID": "isabelle.regner@univ-amu.fr"
+          "ResponsiblePersonContactID_PersonneInformationID": "isabelle.regner@univ-amu.fr"
         },
         {
-          "PersonneResponsableContactID_PersonneInformationID": "magalie.ochs@lis-lab.fr"
+          "ResponsiblePersonContactID_PersonneInformationID": "magalie.ochs@lis-lab.fr"
         }
       ],
       "NonTechnicalDescription_FundingID": "Côte d’Azur University, CNRS",

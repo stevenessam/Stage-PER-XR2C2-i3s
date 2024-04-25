@@ -20,7 +20,8 @@ let projectsData = require('./data/projects.json');
 
 // Serve projects data
 app.get('/projects', (req, res) => {
-    res.json(projectsData);
+
+    res.sendFile(path.join(__dirname, 'data', 'projects.json'));
 });
 app.use('/mediaFiles', express.static('mediaFiles'));
 

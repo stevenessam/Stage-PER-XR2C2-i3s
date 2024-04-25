@@ -73,11 +73,20 @@
                 <div class="row gy-4">
                     <div class="col-lg-8">
                         <!-- Portfolio images slider -->
-                        <div class="portfolio-details-slider swiper">
-                            <div class="swiper-wrapper align-items-center" id="imageSlider">
+                        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner align-items-center" id="imageSlider">
                                 <!-- Images will be dynamically added here -->
                             </div>
-                            <div class="swiper-pagination"></div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -147,7 +156,16 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+    <!-- Vendor JS Files -->
+    <script src="styles/bootstrapStyle/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="styles/bootstrapStyle/vendor/aos/aos.js"></script>
+    <script src="styles/bootstrapStyle/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="styles/bootstrapStyle/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="styles/bootstrapStyle/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="styles/bootstrapStyle/vendor/swiper/swiper-bundle.min.js"></script>
 
+    <!-- Template Main JS File -->
+    <script src="styles/bootstrapStyle/js/main.js"></script>
 
     <script>
 
@@ -212,27 +230,34 @@
                     const nonTechDesc = project['Non Technical Description'];
                     if (nonTechDesc && nonTechDesc['NonTechnicalDescription_ImageFilesID']) {
                         const imageFiles = nonTechDesc['NonTechnicalDescription_ImageFilesID'];
-                        const swiperWrapper = document.querySelector('.portfolio-details-slider .swiper-wrapper');
+                        const swiperWrapper = document.querySelector('.carousel-inner');
                         swiperWrapper.innerHTML = ''; // Clear existing content
                         if (imageFiles && imageFiles.length > 0 && imageFiles[0]['ImageFilesID_ImagePathID']) {
-                            imageFiles[0]['ImageFilesID_ImagePathID'].forEach(imagePath => {
-                                const swiperSlide = document.createElement('div');
-                                swiperSlide.classList.add('swiper-slide');
+                            imageFiles[0]['ImageFilesID_ImagePathID'].forEach((imagePath, index) => {
+                                const carouselItem = document.createElement('div');
+                                carouselItem.classList.add('carousel-item');
+                                if (index === 0) {
+                                    carouselItem.classList.add('active');
+                                }
                                 const img = document.createElement('img');
                                 img.src = imagePath || '/mediaFiles/Images/placeholder.jpg'; // Use placeholder if imagePath is not available
+                                img.classList.add('d-block', 'w-100');
                                 img.alt = '';
-                                swiperSlide.appendChild(img);
-                                swiperWrapper.appendChild(swiperSlide);
+                                // Add click event listener to each image
+                                img.addEventListener('click', () => displayImageModal(imagePath));
+                                carouselItem.appendChild(img);
+                                swiperWrapper.appendChild(carouselItem);
                             });
                         } else {
                             // If no image paths are found, display placeholder image
-                            const swiperSlide = document.createElement('div');
-                            swiperSlide.classList.add('swiper-slide');
+                            const carouselItem = document.createElement('div');
+                            carouselItem.classList.add('carousel-item', 'active');
                             const img = document.createElement('img');
                             img.src = '/mediaFiles/Images/placeholder.jpg';
+                            img.classList.add('d-block', 'w-100');
                             img.alt = ''; // You can set the alt text if needed
-                            swiperSlide.appendChild(img);
-                            swiperWrapper.appendChild(swiperSlide);
+                            carouselItem.appendChild(img);
+                            swiperWrapper.appendChild(carouselItem);
                         }
                     } else {
                         throw new Error('No image files found');
@@ -240,6 +265,73 @@
                 })
                 .catch(error => console.error('Error fetching project images:', error));
         }
+
+        // Function to display image in a modal when clicked
+        function displayImageModal(imagePath) {
+            // Check if a modal is already open
+            const existingModal = document.querySelector('.modal');
+            if (existingModal) {
+                // If a modal is already open, update its content and return
+                const modalBody = existingModal.querySelector('.modal-body');
+                modalBody.innerHTML = `
+            <img src="${imagePath}" class="img-fluid" alt="">
+            <span class="modal-arrow left">&lt;</span>
+            <span class="modal-arrow right">&gt;</span>
+        `;
+                return;
+            }
+
+            // Create modal content
+            const modalContent = `
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="${imagePath}" class="img-fluid" alt="">
+                    <span class="modal-arrow left">&lt;</span>
+                    <span class="modal-arrow right">&gt;</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+            // Create modal element
+            const modal = document.createElement('div');
+            modal.classList.add('modal', 'fade');
+            modal.innerHTML = modalContent;
+
+            // Add modal to body
+            document.body.appendChild(modal);
+
+            // Initialize modal using Bootstrap's Modal component
+            const modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+
+            // Remove modal from DOM after it's hidden
+            modal.addEventListener('hidden.bs.modal', () => {
+                modal.remove();
+            });
+        }
+
+        // Set up event listeners for modal navigation arrows
+        document.body.addEventListener('click', event => {
+            const target = event.target;
+            if (target.classList.contains('modal-arrow')) {
+                const direction = target.classList.contains('left') ? 'left' : 'right';
+                const activeImage = document.querySelector('.modal-body img');
+                const carouselItems = Array.from(document.querySelectorAll('.carousel-item'));
+                const currentIndex = carouselItems.findIndex(item => item.querySelector('img').src === activeImage.src);
+
+                let newIndex;
+                if (direction === 'left') {
+                    newIndex = currentIndex === 0 ? carouselItems.length - 1 : currentIndex - 1;
+                } else {
+                    newIndex = currentIndex === carouselItems.length - 1 ? 0 : currentIndex + 1;
+                }
+
+                const newImage = carouselItems[newIndex].querySelector('img');
+                displayImageModal(newImage.src);
+            }
+        });
 
         // Function to retrieve and display project videos
         function fetchProjectVideos(projectId) {
@@ -505,16 +597,6 @@
         // Fetch the project data
         fetchProjectData(projectId);
     </script>
-    <!-- Vendor JS Files -->
-    <script src="styles/bootstrapStyle/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="styles/bootstrapStyle/vendor/aos/aos.js"></script>
-    <script src="styles/bootstrapStyle/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="styles/bootstrapStyle/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="styles/bootstrapStyle/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="styles/bootstrapStyle/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="styles/bootstrapStyle/js/main.js"></script>
 
 </body>
 

@@ -1,0 +1,770 @@
+[
+    {
+        "Interview": [
+            {
+                "label": "Date",
+                "AttributeID" : "Interview_DateID",
+                "type": "date",
+                "description": "The precise date of the interview serves as a temporal reference for all related actions and decisions, determining when the information was gathered."
+            },
+            {
+                "label": "Person Interviewed",
+                "AttributeID" : "Interview_PersonInterviewedID",
+                "type": "String",
+                "description": "The attribute refers to the specific individual who participated in the interview session, contributing key insights, expertise, opinions, or relevant information to the project discussions."
+            },
+            {
+                "label": "Format",
+                "AttributeID" : "Interview_FormatID",
+                "type": "String",
+                "description": "The attribute describes the mode or method by which the interview was conducted, specifying the platform or parameter used for communication."
+            },
+            {
+                "label": "Duration",
+                "AttributeID" : "Interview_DurationID",
+                "type": "String",
+                "description": "The attribute represents the total elapsed time during the interview session, indicating the duration dedicated by both the interviewer and the interviewee."
+            }
+        ],
+        "Non Technical Description": [
+            {
+                "label": "Name",       
+                "AttributeID" : "NonTechnicalDescription_NameID",         
+                "type": "String",
+                "description": "The attribute serves as a distinctive identifier for the project. Each specific project mentioned carries a unique name reflecting its goals, whether related to gender equality, user behavior in VR, participatory artistic practices, or financial considerations."
+            },
+            {
+                "label": "Responsible Person Contact",
+                "AttributeID" : "NonTechnicalDescription_ResponsiblePersonContactID",
+                "type": "list",
+                "description": "The attribute provides information about individuals playing key roles in project supervision or management, vital for external parties, collaborators, or interested individuals seeking project-related information, collaboration opportunities, or coordination details.",
+                "children": [
+                    [
+                        {
+                            "label": "Personne Information",
+                            "AttributeID" : "ResponsiblePersonContactID_PersonneInformationID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Funding",
+                "AttributeID" : "NonTechnicalDescription_FundingID",
+                "type": "String",
+                "description": "Identifies institutions, organizations, or entities providing monetary support to enable project execution, sourced from various entities such as universities, research agencies, and specific projects."
+            },
+            {
+                "label": "Goal",
+                "AttributeID" : "NonTechnicalDescription_GoalID",
+                "type": "String",
+                "description": "The attribute describes the main objectives or goals of the project, offering an overview of its expected outcomes and impact. It provides a high-level understanding of the anticipated results and impact."
+            },
+            {
+                "label": "Immersion Type",
+                "AttributeID" : "NonTechnicalDescription_ImmersionTypeID",
+                "type": "option",
+                "options": ["Virtual Reality (VR)", "Augmented Reality (AR)", "Immersion through Sound ", "Immersion ", "Mixed Reality (MR)", "Cave Automatic Virtual Environment", "Extended Reality (XR)", "Holographic Reality"],
+                "other": true,
+                "description": "The attribute specifies the level and nature of immersion utilized by project participants, with each type of immersion offering distinct user experiences that influence project design and objectives."
+            },
+            {
+                "label": "Immersivity Degree",
+                "AttributeID" : "NonTechnicalDescription_ImmersivityDegreeID",
+                "type": "option",
+                "options": ["Full Immersion", "Partial Immersion", "Not Applicable "],
+                "other": false,
+                "description": "The attribute measures the degree of participants' immersion in the virtual or augmented reality environment, evaluating the level of sensory engagement and the extent to which the digital experience replaces or enhances the real environment."
+            },
+            {
+                "label": "Unique Or Redoable",
+                "AttributeID" : "NonTechnicalDescription_UniqueORRedoableID",
+                "type": "option",
+                "options": ["Unique", "Redoable"],
+                "other": false,
+                "description": "The attribute distinguishes between projects offering a one-time immersive experience and those that can be repeated or recreated for multiple sessions."
+            },
+            {
+                "label": "Typical Experience",
+                "AttributeID" : "NonTechnicalDescription_TypicalExperienceID",
+                "type": "option",
+                "options": ["User evaluation"],
+                "other": true,
+                "description": "The attribute clarifies the main objective or purpose of user engagement within the project."
+            },
+            {
+                "label": "Progress State",
+                "AttributeID" : "NonTechnicalDescription_ProgressStateID",
+                "type": "option",
+                "options": ["In Progress", "Completed"],
+                "other": false,
+                "description": "The attribute provides an overview of the current state of the project."
+            },
+            {
+                "label": "Image Files",
+                "AttributeID" : "NonTechnicalDescription_ImageFilesID",
+                "type": "image",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Image Path",
+                            "AttributeID" : "ImageFilesID_ImagePathID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Video Files",
+                "AttributeID" : "NonTechnicalDescription_VideoFilesID",
+                "type": "video",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Video Path",
+                            "AttributeID" : "VideoFilesID_VideoPathID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            }
+        ],
+        "Hardware": [
+            {
+                "label": "Computer Dependent",
+                "AttributeID" : "Hardware_ComputerDependentID",
+                "type": "Boolean",
+                "description": "The attribute indicates whether the project's functionality relies on computer usage, emphasizing the role of computing devices in supporting various aspects of the project."
+            },
+            {
+                "label": "Computer Quantity",
+                "AttributeID" : "Hardware_ComputerQuantityID",
+                "type": "Integer",
+                "description": "The attribute provides details about specific features or functionalities of the computer intended for use in the project."
+            },
+            {
+                "label": "Computer Particular Aspects",
+                "AttributeID" : "Hardware_ComputerParticularAspectsID",
+                "type": "String",
+                "description": "The attribute specifies the type or state of the graphics processing unit (GPU) in the designated computer for the project, highlighting its role in rendering graphics and managing visual processing tasks."
+            },
+            {
+                "label": "GPU Dependant",
+                "AttributeID" : "Hardware_GPUDependantID",
+                "type": "Boolean",
+                "description": "The attribute indicates whether the immersive project's performance and functionality are reliant on the graphics processing unit (GPU) of the computer system."
+            },
+            {
+                "label": "GPU Model Information",
+                "AttributeID" : "Hardware_GPUModelInfoID",
+                "type": "String",
+                "description": "The attribute provides details about the specific model or type of graphics processing unit (GPU) used in the project, highlighting its technical specifications and capabilities."
+            },
+            {
+                "label": "Display Devices",
+                "AttributeID" : "Hardware_DisplayDevicesID",
+                "type": "list",
+                "description": "The attribute specifies the types of devices used for visual display in the project and indicates the quantity of these devices.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Device Type",
+                            "AttributeID" : "DisplayDevicesID_DeviceTypeID",
+                            "type": "option",
+                            "options": ["VR headset", "Oculus Quest 2","HTC Vive Eye Pro", "Headphones","Phone", "Pending"],
+                            "other": true
+                        },
+                        {
+                            "label": "Devices Quantity",
+                            "AttributeID" : "DisplayDevicesID_DevicesQuantityID",
+                            "type": "Integer"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Tracking Devices",
+                "AttributeID" : "Hardware_TrackingDevicesID",
+                "type": "option",
+                "options": ["MVN Awinda", "Shimmer3 GSR+","HTC Vive Eye Pro"],
+                "other": true,
+                "description": "The attribute specifies the presence or absence of tracking devices in the project, highlighting the tools used to monitor and capture user movement or position in the immersive environment."
+            },
+            {
+                "label": "Input Devices",
+                "AttributeID" : "Hardware_InputDevicesID",
+                "type": "option",
+                "options": ["HTC VIVE EYE PRO Controllers", "Not Applicable","Pending"],
+                "other": true,
+                "description": "The attribute encompasses devices or tools used to gather user feedback within the project, facilitating interaction and engagement."
+            },
+            {
+                "label": "Output Devices",
+                "AttributeID" : "Hardware_OutputDevicesID",
+                "type": "option",
+                "options": ["Headphones", "Microphones","Pending"],
+                "other": true,
+                "description": "The attribute refers to devices responsible for presenting or delivering outcomes to users within the project, enhancing the overall sensory experience."
+            },
+            {
+                "label": "Cabling Requirement",
+                "AttributeID" : "Hardware_CablingID",
+                "type": "Boolean",
+                "description": "The attribute indicates the use or absence of physical cables for setting up the experience, providing an overview of the extent to which wired connections are involved."
+            },
+            {
+                "label": "Cabling Specification",
+                "AttributeID" : "Hardware_CablingSpecificationID",
+                "type": "String",
+                "description": "The attribute provides details about the specific types of cables or connections required for the immersive project, specifying the length, type, and configuration of cables used."
+            },
+            {
+                "label": "Audio Equipment",
+                "AttributeID" : "Hardware_AudioEquipmentID",
+                "type": "list",
+                "description": "The attribute provides an overview of tools and devices dedicated to managing and delivering audio components within the project.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Equipment Type",
+                            "AttributeID" : "AudioEquipmentID_EquipmentTypeID",
+                            "type": "option",
+                            "options": ["Headphones", "Microphones","Speakers","Mixers"],
+                            "other": true
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Other Hardware information",
+                "AttributeID" : "Hardware_OtherHardwareInformationID",
+                "type": "String",
+                "description": "The attribute allows for including additional details or specificities regarding hardware components that may not be covered by previous categories."
+            }
+        ],
+        "Software": [
+            {
+                "label": "Executable File",
+                "AttributeID" : "Software_ExecutableFileID",
+                "type": "String",
+                "description": "The attribute describes how users can access the software executable file, providing an overview of the project's distribution and availability."
+            },
+            {
+                "label": "Simulation",
+                "AttributeID" : "Software_SimulationID",
+                "type": "Boolean",
+                "description": "The attribute indicates whether the immersive project integrates simulation elements, providing participants with an experience that replicates real-world scenarios or conditions."
+            },
+            {
+                "label": "Platform",
+                "AttributeID" : "Software_PlatformID",
+                "type": "option",
+                "options": ["Android 10", "Windows"],
+                "other": true,
+                "description": "The attribute specifies the compatible operating system or platform for the immersive project, indicating the environment in which the software can successfully run."
+            },
+            {
+                "label": "Dependencies",
+                "AttributeID" : "Software_DependenciesID",
+                "type": "String",
+                "description": "The attribute specifies the external elements or resources relied upon by the immersive project for its proper functioning."
+            },
+            {
+                "label": "Source Code",
+                "AttributeID" : "Software_SourceCodeID",
+                "type": "String",
+                "description": "The attribute provides information indicating whether the project's source code or resources are openly accessible to the public."
+            },
+            {
+                "label": "Other Software Information",
+                "AttributeID" : "Software_OtherSoftwareInformationID",
+                "type": "String",
+                "description": "The attribute allows for including additional details or information about software tools, libraries, or components that may not be covered by previous categories."
+            }
+        ],
+        "Production": [
+            {
+                "label": "3D Assets Tools",
+                "AttributeID" : "Production_3DAssetsToolsID",
+                "type": "String",
+                "description": "The attribute provides information about the software tools used in the creation or design of 3D assets contributing to the immersive project."
+            },
+            {
+                "label": "Sounds Design Spatial Audio",
+                "AttributeID" : "Production_SoundsDesignSpatialAudioID",
+                "type": "list",
+                "description": "The attribute encompasses aspects related to audio elements within the immersive project, including sound design, individual sounds, and spatial audio considerations.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Sounds Audio Type",
+                            "AttributeID" : "SoundsDesignSpatialAudioID_SoundsAudioTypeID",
+                            "type": "option",
+                            "options": ["Royalty-Free Sounds", "Specialized Car Sounds","Audios recorded"],
+                            "other": true
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Code Libraries Custom",
+                "AttributeID" : "Production_CodeLibrariesCustomID",
+                "type": "String",
+                "description": "The attribute delineates the involvement of pre-existing code libraries, custom code, or tailored programming elements in the immersive project."
+            },
+            {
+                "label": "Engine Version",
+                "AttributeID" : "Production_EngineVersionID",
+                "type": "String",
+                "description": "The attribute specifies the game development engine used to create the project, along with its version."
+            },
+            {
+                "label": "Plugins",
+                "AttributeID" : "Production_PluginsID",
+                "type": "list",
+                "description": "The attribute highlights additional software components or extensions integrated into the immersive project to enhance functionality.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Plugins Type",
+                            "AttributeID" : "PluginsID_PluginsTypeID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Models",
+                "AttributeID" : "Production_ModelsID",
+                "type": "list",
+                "description": "The attribute provides information about the models used in the immersive project, including characters, objects, or other visual elements.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Model Name",
+                            "AttributeID" : "ModelsID_ModelNameID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Materials Textures",
+                "AttributeID" : "Production_MaterialsTexturesID",
+                "type": "String",
+                "description": "The attribute provides information about the materials and textures applied to the 3D models within the project."
+            },
+            {
+                "label": "Source Video Files",
+                "AttributeID" : "Production_SourceVideoFilesID",
+                "type": "String",
+                "description": "The attribute provides information about any video files used as source material in the immersive project."
+            },
+            {
+                "label": "Reusable Homemade Assets",
+                "AttributeID" : "Production_ReusableHomemadeAssetsID",
+                "type": "list",
+                "description": "The attribute indicates whether the assets created for the immersive project are considered reusable for future projects.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Assets Information",
+                            "AttributeID" : "ReusableHomemadeAssetsID_AssetsInformationID",
+                            "type": "String"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Artists Name",
+                "AttributeID" : "Production_ArtistsNameID",
+                "type": "String",
+                "description": "The attribute provides information about the individuals or entities responsible for creating artistic elements within the immersive project."
+            },
+            {
+                "label": "Narrative scripts",
+                "AttributeID" : "Production_NarrativeScriptsID",
+                "type": "list",
+                "description": "The attribute provides information about scripted elements related to the narrative, including audio scripts, scenarios, or other scripted components within the immersive project.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Scripts Description",
+                            "AttributeID" : "NarrativeScriptsID_ScriptsDescriptionID",
+                            "type": "String"
+                        },
+                        {
+                            "label": "Scripts Quantity",
+                            "AttributeID" : "NarrativeScriptsID_ScriptsQuantityID",
+                            "type": "Integer"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Other Dependencies",
+                "AttributeID" : "Production_OtherDependenciesID",
+                "type": "String",
+                "description": "The attribute describes any additional crucial elements or requirements for the functionality of the immersive project."
+            },
+            {
+                "label": "Other Production Information",
+                "AttributeID" : "Production_OtherProductionInformationID",
+                "type": "String",
+                "description": "Interview with the creator of the experienceThis attribute encompasses any additional information or detail regarding the production phase of the immersive project that may not fit into specific attribute categories."
+            }
+        ],
+        "Target Users": [
+            {
+                "label": "Disability Accessibility",
+                "AttributeID" : "TargetUsers_DisabilityAccessibilityID",
+                "type": "String",
+                "description": "The attribute specifies considerations and accommodations made in the project to ensure accessibility for people with disabilities."
+            },
+            {
+                "label": "Accessibility Lay Users",
+                "AttributeID" : "TargetUsers_AccessibilityLayUsersID",
+                "type": "Boolean",
+                "description": "This attribute assesses to what extent the immersive project is designed to be user-friendly for participants with limited technical or specialized knowledge."
+            },
+            {
+                "label": "Participants",
+                "AttributeID" : "TargetUsers_ParticipantsID",
+                "type": "list",
+                "description": "The attribute indicates the range of participants that the immersive project can accommodate, specifying the minimum and maximum number of users.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "Participant Range",
+                            "AttributeID" : "ParticipantsID_ParticipantRangeID",
+                            "type": "option",
+                            "options": ["Minimum ", "Maximum"],
+                            "other": false
+                        },
+                        {
+                            "label": "Participant Capacity",
+                            "AttributeID" : "ParticipantsID_ParticipantCapacityID",
+                            "type": "Integer"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Multiplayer",
+                "AttributeID" : "TargetUsers_MultiplayerID",
+                "type": "Boolean",
+                "description": "The attribute specifies whether the immersive project supports simultaneous participation or interaction among multiple users."
+            },
+            {
+                "label": "Target Audience",
+                "AttributeID" : "TargetUsers_TargetAudienceID",
+                "type": "String",
+                "description": "The attribute describes any specific criteria related to the social and demographic characteristics of the target audience for the immersive project."
+            },
+            {
+                "label": "Comments",
+                "AttributeID" : "TargetUsers_CommentsID",
+                "type": "String",
+                "description": "The attribute allows for additional comments or remarks related to the participants or target users of the immersive project."
+            }
+        ],
+        "Facility": [
+            {
+                "label": "Experience Time",
+                "AttributeID" : "Facility_ExperienceTimeID",
+                "type": "String",
+                "description": "The attribute defines the duration or time required for participants to engage in the immersive experience."
+            },
+            {
+                "label": "Timeline",
+                "AttributeID" : "Facility_TimelineID",
+                "type": "String",
+                "description": "The attribute describes the sequence and duration of various activities related to the project, providing a chronological overview."
+            },
+            {
+                "label": "Installation Crew",
+                "AttributeID" : "Facility_InstallationCrewID",
+                "type": "Integer",
+                "description": "The attribute specifies the number of individuals required to set up or manage the project."
+            },
+            {
+                "label": "Surface",
+                "AttributeID" : "Facility_SurfaceID",
+                "type": "String",
+                "description": "The attribute defines the spatial requirements for the realization of the immersive project, specifying the minimum and maximum surfaces necessary."
+            },
+            {
+                "label": "Physical Delimitations",
+                "AttributeID" : "Facility_PhysicalDelimitationsID",
+                "type": "String",
+                "description": "Physical boundaries refer to constraints on the physical space of an experience, defined by barriers like walls or fences, limiting participants' movement or interaction within the designated area."
+            },
+            {
+                "label": "Virtual Delimitations",
+                "AttributeID" : "Facility_VirtualDelimitationsID",
+                "type": "String",
+                "description": "Virtual boundaries refer to limits or constraints imposed in a virtual environment to define the spatial limits of participant interaction or movement."
+            },
+            {
+                "label": "Walls",
+                "AttributeID" : "Facility_WallsID",
+                "type": "String",
+                "description": "The attribute specifies whether physical walls are required to define the boundaries of the immersive project, including details on quantity and color."
+            },
+            {
+                "label": "Projection",
+                "AttributeID" : "Facility_ProjectionID",
+                "type": "String",
+                "description": "The attribute determines whether visual projections, such as images or videos, are required as part of the immersive project."
+            },
+            {
+                "label": "Standing Or Sitting",
+                "AttributeID" : "Facility_StandingOrSittingID",
+                "type": "option",
+                "options": ["Standing", "Sitting"],
+                "other": false,
+                "description": "The attribute indicates whether participants should stand, sit, or have the option to choose their posture during the immersive project."
+            },
+            {
+                "label": "Lighting",
+                "AttributeID" : "Facility_LightingID",
+                "type": "String",
+                "description": "The attribute refers to the lighting conditions present in the environment where an experiment or experience is taking place."
+            },
+            {
+                "label": "Acoustics",
+                "AttributeID" : "Facility_AcousticsID",
+                "type": "String",
+                "description": "Acoustics concerns the characteristics and sound conditions of the environment in which an experiment or experiment takes place."
+            },
+            {
+                "label": "Sensory Inputs",
+                "AttributeID" : "Facility_SensoryInputsID",
+                "type": "String",
+                "description": "The attribute refer to the various stimuli received by participants during an experience, which can include visual, auditory and tactile sensations."
+            },
+            {
+                "label": "Sensory Outputs ",
+                "AttributeID" : "Facility_SensoryOutputsID",
+                "type": "String",
+                "description": "In the context of an experience refer to the responses, actions or effects generated by participants based on the sensory inputs they receive."
+            },
+            {
+                "label": "Supervision",
+                "AttributeID" : "Facility_SupervisionID",
+                "type": "String",
+                "description": "The attribute describes the supervision or monitoring conditions necessary during the immersive project."
+            },
+            {
+                "label": "Other External Inputs/Outputs",
+                "AttributeID" : "Facility_OtherExternalInputsOutputsID",
+                "type": "String",
+                "description": "The attribute concerns any additional inputs or outputs beyond the main sensory and interactive elements within the immersive project."
+            },
+            {
+                "label": "Spatial Flexibility",
+                "AttributeID" : "Facility_SpatialFlexibilityID",
+                "type": "String",
+                "description": "This attribute evaluates the extent to which the immersive project can be adjusted and implemented in varied physical environments."
+            },
+            {
+                "label": "Team",
+                "AttributeID" : "Facility_TeamID",
+                "type": "list",
+                "description": "The attribute describes the individuals or roles involved in the immersive project, including actors, actresses, sound artists, and other contributors.",
+                "value": [],
+                "children": [
+                    [
+                        {
+                            "label": "cast",
+                            "AttributeID" : "TeamID_castID",
+                            "type": "String"
+                        },
+                        {
+                            "label": "Cast Number",
+                            "AttributeID" : "TeamID_CastNumberID",
+                            "type": "Integer"
+                        }
+                    ]
+                ]
+            },
+            {
+                "label": "Sanitary Conditions",
+                "AttributeID" : "Facility_SanitaryConditionsID",
+                "type": "String",
+                "description": "The attribute describes the measures and practices implemented to maintain hygiene and cleanliness within the immersive project environment, particularly regarding the equipment used by participants."
+            }
+        ],
+        "Experience Waiting Line": [
+            {
+                "label": "Waiting Time",
+                "AttributeID" : "ExperienceWaitingLine_WaitingTimeID",
+                "type": "String",
+                "description": "The attribute focuses on how long participants must wait before engaging in the immersive project when there is a queue."
+            },
+            {
+                "label": "Visibility",
+                "AttributeID" : "ExperienceWaitingLine_VisibilityID",
+                "type": "Boolean",
+                "description": "The attribute concerns whether people queuing for the immersive experience can observe the activities taking place in the immersive setting."
+            },
+            {
+                "label": "Audibility",
+                "AttributeID" : "ExperienceWaitingLine_AudibilityID",
+                "type": "Boolean",
+                "description": "The attribute focuses on whether people queuing for the immersive experience can hear the audio components or sounds of the immersive activities taking place."
+            },
+            {
+                "label": "Capacity",
+                "AttributeID" : "ExperienceWaitingLine_CapacityID",
+                "type": "Integer",
+                "description": "The attribute specifies the maximum capacity or limit on the number of people allowed in the queue for the immersive experience."
+            },
+            {
+                "label": "Other Experience Waiting Line Information",
+                "AttributeID" : "ExperienceWaitingLine_OtherExperienceWaitingLineInformationID",
+                "type": "String",
+                "description": "The attribute encompasses additional details or considerations related to configuring and managing the queue for the immersive experience."
+            }
+        ],
+        "Privacy": [
+            {
+                "label": "Personal Data",
+                "AttributeID" : "Privacy_PersonalDataID",
+                "type": "String",
+                "description": "The attribute details the collection and use of participants' personal information by the immersive experience."
+            },
+            {
+                "label": "Exposure",
+                "AttributeID" : "Privacy_ExposureID",
+                "type": "Boolean",
+                "description": "Exposure of participants to others refers to the extent to which individuals participating in an experiment or experiment interact with or are visible to other participants or external observers."
+            },
+            {
+                "label": "Confidentiality",
+                "AttributeID" : "Privacy_ConfidentialityID",
+                "type": "String",
+                "description": "The attribute describes the level of protection and discretion applied to the personal data of participants within the immersive project."
+            },
+            {
+                "label": "License",
+                "AttributeID" : "Privacy_LicenseID",
+                "type": "String",
+                "description": "The attribute specifies the permissions and licensing terms associated with the distribution of immersive project content or data."
+            },
+            {
+                "label": "Other Privacy Information",
+                "AttributeID" : "Privacy_OtherPrivacyInformationID",
+                "type": "String",
+                "description": "The attribute provides space for any additional privacy-related details or considerations that may not be covered by other specific attributes."
+            }
+        ],
+        "Documentation": [
+            {
+                "label": "Existing Documentation",
+                "AttributeID" : "Documentation_ExistingDocumentationID",
+                "type": "Boolean"
+            },
+            {
+                "label": "Existing Documentation Information",
+                "AttributeID" : "Documentation_ExistingDocumentationInformationID",
+                "type": "String",
+                "description": "The attribute describes the procedures and methods for obtaining or accessing documentation relating to the immersive project."
+            },
+            {
+                "label": "Past Installations",
+                "AttributeID" : "Documentation_PastInstallationsID",
+                "type": "String",
+                "description": "The attribute relates to documentation or records of previous instances where the immersive project was implemented, including photos, videos or captures from the current project."
+            },
+            {
+                "label": "Script",
+                "AttributeID" : "Documentation_ScriptID",
+                "type": "Boolean",
+                "description": "The attribute refers to the presence and documentation of scripts or narratives associated with the immersive project, providing details about audio, plots, or other narrative elements."
+            },
+            {
+                "label": "Script Information",
+                "AttributeID" : "Documentation_ScriptInformationID",
+                "type": "String",
+                "description": "Interview with the creator of the experience"
+            },
+            {
+                "label": "Design",
+                "AttributeID" : "Documentation_DesignID",
+                "type": "String",
+                "description": "The attribute relates to the existence of documentation describing the design, conceptualization and planning aspects of the immersive project."
+            },
+            {
+                "label": "Schematics",
+                "AttributeID" : "Documentation_SchematicsID",
+                "type": "String",
+                "description": "The attribute refers to the presence of diagrams or schematics illustrating the system architecture, connections, and components of the immersive project."
+            },
+            {
+                "label": "Scientific Publication",
+                "AttributeID" : "Documentation_ScientificPublicationID",
+                "type": "String",
+                "description": "The attribute relates to the existence of a published scientific article or publication directly associated with the immersive project."
+            },
+            {
+                "label": "Other Documentation Information",
+                "AttributeID" : "Documentation_OtherDocumentationInformationID",
+                "type": "String",
+                "description": "The attribute encompasses any additional details or information related to the documentation not covered by specific attributes."
+            }
+        ],
+        "Experience Evaluation": [
+            {
+                "label": "Questionnaires",
+                "AttributeID" : "ExperienceHasEvaluation_QuestionnairesID",
+                "type": "String",
+                "description": "The attribute concerns the use of questionnaires as a means of evaluating the immersive project, whether for scientific research or to measure participant satisfaction."
+            },
+            {
+                "label": "Protocol",
+                "AttributeID" : "ExperienceHasEvaluation_ProtocolID",
+                "type": "String",
+                "description": "The attribute relates to the existence and details of a defined protocol describing the procedures and methodologies used in the evaluation of the immersive project."
+            },
+            {
+                "label": "Quantitative Measurements",
+                "AttributeID" : "ExperienceHasEvaluation_QuantitativeMeasurementsID",
+                "type": "String",
+                "description": "The attribute focuses on data collection procedures, types of quantitative data, and metrics used to evaluate the immersive project."
+            },
+            {
+                "label": "Sample",
+                "AttributeID" : "ExperienceHasEvaluation_SampleID",
+                "type": "String",
+                "description": "The attribute refers to the number of participants involved in the evaluation process of the immersive project."
+            },
+            {
+                "label": "Devices",
+                "AttributeID" : "ExperienceHasEvaluation_DevicesID",
+                "type": "String",
+                "description": "The attribute encompasses the hardware and equipment, both IT and physiological, used during the evaluation of the immersive project."
+            }
+        ],
+        "Project Visibility":[  
+            {
+                "label": "Visibility",
+                "AttributeID" : "ProjectVisibility_VisibilityID",
+                "type": "option",
+                "options": ["Public", "Private"],
+                "other": false,
+                "description": "The attribute specifies whether the project is visible on the website or kept private."
+            }
+        ]
+    }
+]

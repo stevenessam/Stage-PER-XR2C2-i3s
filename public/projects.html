@@ -203,7 +203,7 @@
             currentProjects.forEach(project => {
                 const visibility = project["Project Visibility"]["ProjectVisibility_VisibilityID"];
                 // Check visibility
-                if (visibility === "Public") {
+                if (visibility === "Public" || visibility === "") {
                     const projectId = project.id;
                     let projectName = 'Project Name Not Available';
                     let projectGoal = 'Goal Not Available';

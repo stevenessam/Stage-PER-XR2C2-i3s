@@ -153,12 +153,14 @@
             {
                 "label": "GPU Dependant",
                 "AttributeID" : "Hardware_GPUDependantID",
-                "type": "Boolean"
+                "type": "Boolean",
+                "description": "The attribute indicates whether the immersive project's performance and functionality are reliant on the graphics processing unit (GPU) of the computer system."
             },
             {
                 "label": "GPU Model Information",
                 "AttributeID" : "Hardware_GPUModelInfoID",
-                "type": "String"
+                "type": "String",
+                "description": "The attribute provides details about the specific model or type of graphics processing unit (GPU) used in the project, highlighting its technical specifications and capabilities."
             },
             {
                 "label": "Display Devices",
@@ -208,10 +210,16 @@
                 "description": "The attribute refers to devices responsible for presenting or delivering outcomes to users within the project, enhancing the overall sensory experience."
             },
             {
-                "label": "Cabling",
+                "label": "Cabling Requirement",
                 "AttributeID" : "Hardware_CablingID",
                 "type": "Boolean",
                 "description": "The attribute indicates the use or absence of physical cables for setting up the experience, providing an overview of the extent to which wired connections are involved."
+            },
+            {
+                "label": "Cabling Specification",
+                "AttributeID" : "Hardware_CablingSpecificationID",
+                "type": "String",
+                "description": "The attribute provides details about the specific types of cables or connections required for the immersive project, specifying the length, type, and configuration of cables used."
             },
             {
                 "label": "Audio Equipment",
@@ -429,21 +437,23 @@
                 "description": "This attribute assesses to what extent the immersive project is designed to be user-friendly for participants with limited technical or specialized knowledge."
             },
             {
-                "label": "Number Of Participants",
-                "AttributeID" : "TargetUsers_NumberOfParticipantsID",
+                "label": "Participants",
+                "AttributeID" : "TargetUsers_ParticipantsID",
                 "type": "list",
                 "description": "The attribute indicates the range of participants that the immersive project can accommodate, specifying the minimum and maximum number of users.",
                 "value": [],
                 "children": [
                     [
                         {
-                            "label": "Participant",
-                            "AttributeID" : "NumberOfParticipantsID_ParticipantID",
-                            "type": "String"
+                            "label": "Participant Range",
+                            "AttributeID" : "ParticipantsID_ParticipantRangeID",
+                            "type": "option",
+                            "options": ["Minimum ", "Maximum"],
+                            "other": false
                         },
                         {
-                            "label": "Participant Number",
-                            "AttributeID" : "NumberOfParticipantsID_ParticipantNumberID",
+                            "label": "Participant Capacity",
+                            "AttributeID" : "ParticipantsID_ParticipantCapacityID",
                             "type": "Integer"
                         }
                     ]

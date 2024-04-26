@@ -123,7 +123,7 @@ Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit
 # Page d'Accueil ✅
 - Accédez à la page d'Accueil à l'adresse http://localhost:3000/
 - La page d'accueil est dédiée aux informations liées au `XR2C2`, offrant aux visiteurs un aperçu complet de l'organisation et de ses activités.
-- Une section statistique `dynamique` affiche le `nombre` actuel de projets disponibles sur le site, offrant aux utilisateurs une vue en temps réel du contenu disponible.
+- Une section `dynamique` affiche le `nombre` actuel de projets disponibles sur le site, offrant aux utilisateurs une vue en temps réel du contenu disponible.
 
 <br>
 

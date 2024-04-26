@@ -5,6 +5,10 @@ Ce site web a été développé et structuré par **Steven ESSAM** dans le cadre
 
 Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit au développement de solutions innovantes pour la préservation et la consultation de projets immersifs et d'œuvres d'art au sein du **XR2C2 - Centre de recherche et de créativité en réalité étendue**.
 
+## License
+
+See the [LICENSE file](LICENSE).
+
 <br>
 
 # Technologies de Programmation

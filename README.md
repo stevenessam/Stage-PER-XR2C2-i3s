@@ -84,7 +84,7 @@ Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit
 - Si l'attribut a des options prédéfinies spécifiées dans le JSON, un menu déroulant est automatiquement généré avec ces options.
 - Si l'attribut `other` est défini comme `true` dans le JSON, une option `Other` est ajoutée au menu déroulant, permettant à l'utilisateur de saisir une option personnalisée en plus des options prédéfinies.
 - Chaque attribut est identifié par sa clé `AttributeID`, qui est utilisée comme clé pour l'objet JSON résultant lors de la soumission du formulaire.
-- Il existe une section qui permet à l'utilisateur de choisir, après avoir saisi les données, si le projet créé doit être rendu visible ou privé.
+- Il existe une section qui permet à l'utilisateur de choisir, après avoir saisi les données, si le projet créé doit être rendu `Public` ou `Private`.
 - Lorsque le formulaire est soumis, il collecte les données du formulaire et construit un objet représentant les données du formulaire au format JSON.
 
 <br>

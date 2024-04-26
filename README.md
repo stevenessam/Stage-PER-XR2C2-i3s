@@ -1,9 +1,9 @@
 # Readme
 # Projet XR²C²
 
-### Ce site web a été développé et structuré par **Steven ESSAM** dans le cadre d'un projet de recherche mené en collaboration avec l'**I3S** et le **DS4H** à l'Université Côte d'Azur. Son projet universitaire, intitulé "Conception et développement d'un outil pour la préservation, l'archivage et l'exposition de projets en réalités étendues", fait partie du Projet de Tutorat pour le Master 1 en Informatique pour l'année académique 2023/2024.
+Ce site web a été développé et structuré par **Steven ESSAM** dans le cadre d'un projet de recherche mené en collaboration avec l'**I3S** et le **DS4H** à l'Université Côte d'Azur. Son projet universitaire, intitulé "Conception et développement d'un outil pour la préservation, l'archivage et l'exposition de projets en réalités étendues", fait partie du Projet de Tutorat pour le Master 1 en Informatique pour l'année académique 2023/2024.
 
-### Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit au développement de solutions innovantes pour la préservation et la consultation de projets immersifs et d'œuvres d'art au sein du **XR2C2 - Centre de recherche et de créativité en réalité étendue**.
+Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit au développement de solutions innovantes pour la préservation et la consultation de projets immersifs et d'œuvres d'art au sein du **XR2C2 - Centre de recherche et de créativité en réalité étendue**.
 
 <br>
 
@@ -66,12 +66,12 @@
     ```
     node server.js
     ```
-- Le serveur fonctionnera sur http://localhost:3000.
+- Le serveur fonctionnera sur http://localhost:3000
 
 <br>
 
 # Soumission du Formulaire ✅
-- Accédez au formulaire à l'adresse http://localhost:3000/form.html.
+- Accédez au formulaire à l'adresse http://localhost:3000/form.html
 - Le code HTML et JavaScript génère dynamiquement un formulaire basé sur une structure `JSON` fournie.
 - Il crée des éléments de formulaire tels que des champs de saisie, des boutons radio et des boutons pour ajouter plus d'ensembles de champs en fonction des attributs spécifiés dans le JSON.
 - Les attributs de type `Liste` permettent aux utilisateurs d'ajouter dynamiquement plusieurs ensembles de champs de saisie.
@@ -99,6 +99,7 @@
 <br>
 
 # Page des Projets ✅
+- Accédez à la page des Projets à l'adresse http://localhost:3000/projects.html
 - Mise en place d'une page pour afficher les projets soumis.
 - Utilisation d'`HTML`, `CSS`, `Bootstrap`, et `JavaScript` pour créer l'interface web.
 - Utilisation de `Bootstrap` pour la mise en page et le style des éléments.
@@ -112,26 +113,22 @@
 
 # Page d'informations sur le projet ✅
 - Les détails du projet sont récupérés dynamiquement à partir d'un fichier `JSON`, permettant une mise à jour facile des informations.
-
 - Les médias du projet, tels que les `images` et les `vidéos`, sont présentés de manière attrayante dans un `carousel`.
-
 - Les `images` peuvent être agrandies pour une visualisation détaillée et claire, permettant aux utilisateurs de voir les détails de l'image avec précision.
-
 - Les `attributs` de chaque `catégorie` du projet sont organisés de manière claire et structurée, facilitant la compréhension et la navigation des utilisateurs.
-
 - L'interface offre une navigation intuitive, permettant aux utilisateurs de parcourir facilement les différentes sections et de trouver rapidement les informations recherchées.
 
 <br>
 
 # Page d'Accueil ✅
+- Accédez à la page d'Accueil à l'adresse http://localhost:3000/
 - La page d'accueil est dédiée aux informations liées au `XR2C2`, offrant aux visiteurs un aperçu complet de l'organisation et de ses activités.
-
 - Une section statistique `dynamique` affiche le `nombre` actuel de projets disponibles sur le site, offrant aux utilisateurs une vue en temps réel du contenu disponible.
 
 <br>
 
 # Page de Compte ✅
-
+- Accédez à la page Compte à l'adresse http://localhost:3000/account.html
 - La page de Compte propose un bouton permettant aux utilisateurs de se diriger directement vers la page de `formulaire` pour créer un nouveau projet. 
 
 <br><br>

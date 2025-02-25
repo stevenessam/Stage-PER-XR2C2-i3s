@@ -1,13 +1,13 @@
-# Readme
-# Projet XR²C²
+# XR²C²
+![XR2C2 Photo](projectDocumentsFiles/XR2C2Photo/xr2c2Photo.png)
+
+</br>
+
+# Description
 
 Ce site web a été développé et structuré par **Steven ESSAM** dans le cadre d'un projet de recherche mené en collaboration avec l'**I3S** et le **DS4H** à l'Université Côte d'Azur. Son projet universitaire, intitulé "Conception et développement d'un outil pour la préservation, l'archivage et l'exposition de projets en réalités étendues", fait partie du Projet de Tutorat pour le Master 1 en Informatique pour l'année académique 2023/2024.
 
 Sous la supervision d'**Aline MENIN** & **Marco WINCKLER**, ce travail a conduit au développement de solutions innovantes pour la préservation et la consultation de projets immersifs et d'œuvres d'art au sein du **XR2C2 - Centre de recherche et de créativité en réalité étendue**.
-
-## License
-
-See the [LICENSE file](LICENSE).
 
 <br>
 
@@ -32,7 +32,7 @@ See the [LICENSE file](LICENSE).
     │   ├── Json_Structure.json
     │   └── projects.json
     │
-    ├── mediaFiles/s
+    ├── mediaFiles/
     │   ├── Images/
     │   └── Videos/
     │
@@ -220,3 +220,8 @@ let selectedFilters = {
 };
 ```
 
+</br>
+
+# License
+
+See the [LICENSE file](LICENSE).

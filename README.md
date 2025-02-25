@@ -224,4 +224,4 @@ let selectedFilters = {
 
 # License
 
-See the [LICENSE file](LICENSE).
+Ce projet est sous licence Apache License 2.0. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
